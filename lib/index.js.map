@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.js"],"names":["widgets","GMEdit"],"mappings":";;;;;;AAAA;;;;;;AAEA,IAAMA,UAAU;AACZC;AADY,CAAhB;;kBAIeD,O","file":"index.js","sourcesContent":["import GraphicsMethodEditForm from \"./graphicsmethods\"\n\nconst widgets = {\n    GMEdit: GraphicsMethodEditForm,\n};\n\nexport default widgets;"]}
