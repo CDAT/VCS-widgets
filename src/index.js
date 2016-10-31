@@ -1,5 +1,7 @@
 import GraphicsMethodEditForm from "./graphicsmethods"
 
-export {
-    GraphicsMethodEditForm,
-}
+const widgets = {
+    GMEdit: GraphicsMethodEditForm,
+};
+
+export default widgets;
