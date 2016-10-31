@@ -2,9 +2,9 @@
   "name": "vcs-widgets",
   "version": "0.0.1",
   "description": "Widgets for manipulating VCS JSON",
-  "main": "src/index.js",
+  "main": "vcs-widgets.js",
   "scripts": {
-    "prepublish": "browserify src/index.js -t babelify --outfile build/bundle.js",
+    "prepublish": "browserify src/index.js -t babelify --outfile vcs-widgets.js",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached --content-base src/"
   },
   "repository": {
