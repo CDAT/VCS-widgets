@@ -1,2 +1,2 @@
-import GraphicsMethodEditForm from "./GraphicsMethodEditForm.jsx";
+import GraphicsMethodEditForm from "./GraphicsMethodEditForm";
 export default GraphicsMethodEditForm;
