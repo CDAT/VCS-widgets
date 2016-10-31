@@ -10,7 +10,7 @@ var Usage = React.createClass({
         usage: React.PropTypes.string,
         warning: React.PropTypes.bool
     },
-    getDefaultProps: ()=>{
+    getDefaultProps() {
         return {
             warning: false,
             placement: 'right',
@@ -42,6 +42,7 @@ var Usage = React.createClass({
                         ? true
                         : false }
                     data-container={this.props.container}>?</a>
+                &emsp;
             </span>
         )
     }

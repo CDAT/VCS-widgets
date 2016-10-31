@@ -1,4 +1,6 @@
+/* global $ */
 import React from 'react'
+import Usage from '../Usage'
 
 function verify(value) {
     let new_value;
@@ -13,10 +15,10 @@ function verify(value) {
                 return new_value;
             }
         }
-    } else {
-        console.log("color_(1|2) is not a string")
-        console.log("color_(1|2) a "+typeof(value))
     }
+}
+function usage(name, html_start='', trailer='', html_end='') {
+    return html_start + name + " property must be an integer >= 0 and <=255. " + trailer + html_end
 }
 var ColorOneTwo = React.createClass({
     propTypes: {
@@ -34,7 +36,7 @@ var ColorOneTwo = React.createClass({
         this.setState({
             color1: nextProps.color1,
             color2: nextProps.color2
-        })
+        });
     },
     handleBlur(event) {
         let value = verify(event.target.value);
@@ -43,10 +45,17 @@ var ColorOneTwo = React.createClass({
             this.props.handleChange(name, value)
         } else {
             // indicate user entered wrong value and reset to last valid value
-            console.log(
-                name+" property must be an integer >= 0 and <=255."
-                +" Value provided was " + event.target.value+" of type "+typeof(event.target.value)
-            )
+            if (name === 'color_1') {
+                this.setState({
+                    color1: this.props.color1
+                });
+                $('#color-1-usage').focus()
+            } else {
+                this.setState({
+                    color2: this.props.color2
+                });
+                $('#color-2-usage').focus()
+            }
         }
     },
     render(){
@@ -58,15 +67,20 @@ var ColorOneTwo = React.createClass({
                     <input type="number"
                         name="color_1"
                         value={this.state.color1===0 || this.state.color1 ?this.state.color1 :''}
-                        onChange={(event)=> {this.setState({color1:event.target.value})}}
-                        onBlur={this.handleBlur} />
+                        onChange={(event)=> {
+                            this.setState({color1:event.target.value})}}
+                        onBlur={this.handleBlur}/>
+                    <Usage id="color-1-usage"
+                        usage={usage("Color 1")} />
                 <h5>Color 2:</h5>
 
                     <input type="number"
                         name="color_2"
                         value={this.state.color2===0 || this.state.color2 ?this.state.color2 :''}
                         onChange={(event)=> {this.setState({color2:event.target.value})}}
-                        onBlur={this.handleBlur} />
+                        onBlur={this.handleBlur}/>
+                    <Usage id="color-2-usage"
+                        usage={usage("Color 2")} />
             </div>
         );
     }

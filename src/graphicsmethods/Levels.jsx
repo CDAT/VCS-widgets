@@ -1,5 +1,6 @@
 /* global $ */
 import React from 'react'
+import Usage from '../Usage'
 
 function verify(value) {
     if (typeof(value) === 'string') {
@@ -12,16 +13,11 @@ function verify(value) {
         console.log( "levels is not a string")
     }
 }
-function focus(node_type, node_name) {
-    let selector = node_type+"[name='"+node_name+"']"
-    $(selector).focus()
-}
 function handleChange(event) {
     let i = Number.parseInt(event.target.name.split('_')[1]);
     let cur_value = event.target.value;
     let levels = this.state.levels;
     let first = levels.slice(0, i).concat(cur_value);
-    let new_levels = first.concat(levels.slice((i + 1), levels.length));
     this.setState({
         levels: first.concat(levels.slice((i + 1), levels.length))
     })
@@ -50,14 +46,16 @@ var Levels = React.createClass({
         if (value === 0 || value) {
             this.props.handleChange(property_name, value, index)
         } else {
-            // indicate user entered wrong value
             console.log(property_name + " must be an integer or 1e+20");
             this.setState({
                 levels: this.props.levels
             });
+            $('#levels-'+index+'-usage').focus()
         }
     },
     render(){
+        let usage =  "Set the level range to use. Must be an integer.\n" +
+                    "If set to 1e+20, VCS will auto-allocate level value."
         return (
             <div >
                 <h5>Levels: </h5>
@@ -79,7 +77,9 @@ var Levels = React.createClass({
                                     data-index={index}
                                     className='btn btn-secondary'>
                                             -
-                                </button><br/>
+                                </button>
+                                <Usage id={'levels-'+index+'-usage'}
+                                    usage={usage} /><br/>
                                 {
                                     index === (this.state.levels.length - 1)
                                     ? <button onClick={this.props.addLevel}
@@ -91,7 +91,11 @@ var Levels = React.createClass({
                             </div>
                         );
                      })
-                    : <button onClick={this.props.addLevel} className='btn btn-secondary'> + </button>
+                    : <span>
+                        <button onClick={this.props.addLevel} className='btn btn-secondary'> + </button>
+                        <Usage id={'levels-usage'}
+                            usage={usage} />
+                      </span>
 
                 }
             </div>

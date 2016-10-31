@@ -1,4 +1,6 @@
 import React from 'react'
+import Usage from '../Usage'
+/* global $ */
 
 function verify(value) {
     let new_value;
@@ -38,11 +40,10 @@ var Missing = React.createClass({
         if (value === 0 || value) {
             this.props.handleChange('missing', value)
         } else {
-            // indicate user entered wrong value
-            console.log("Missing property must be an integer >= 0 and <=255. Value provided was " + event.target.value)
             this.setState({
                 missing: this.props.missing
             });
+            $('#missing-usage').focus()
         }
     },
     render() {
@@ -54,6 +55,8 @@ var Missing = React.createClass({
                     value={this.state.missing === 0 || this.state.missing ?this.state.missing :''}
                     onChange={(event)=>{this.setState({missing:event.target.value})}}
                     onBlur={this.handleBlur}/>
+                <Usage id="missing-usage"
+                    usage="Missing property must be an integer >= 0 and <=255." />
             </div>
         );
     }

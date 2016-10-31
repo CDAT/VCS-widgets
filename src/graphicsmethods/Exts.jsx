@@ -1,4 +1,5 @@
 import React from 'react'
+import Usage from '../Usage'
 
 var Exts = React.createClass({
     propTypes: {
@@ -27,8 +28,12 @@ var Exts = React.createClass({
         this.props.handleChange(event);
     },
     render(){
+        let usage = (side, where)=>{
+            return "Draws an extension arrow on "+side+" side (values "+where+" range value)"
+        }
         return (
-            <span>
+            <span>ll
+
                 <div className={this.props.className}>
                     Ext 1:
                     <input type="checkbox"
@@ -38,6 +43,7 @@ var Exts = React.createClass({
                             this.state.ext1
                             ? true
                             : false }/>
+                        <Usage usage={usage('right', 'less than first')} />
                 </div>
                 <div className={this.props.className}>
                     Ext 2:
@@ -48,6 +54,7 @@ var Exts = React.createClass({
                             this.state.ext2
                             ? true
                             : false }/>
+                        <Usage usage={usage('left', 'greater than last')} />
                 </div>
             </span>
         );
