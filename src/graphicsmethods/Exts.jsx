@@ -33,8 +33,7 @@ var Exts = React.createClass({
             return "Draws an extension arrow on "+side+" side (values "+where+" range value)"
         }
         return (
-            <span>ll
-
+            <span>
                 <div className={this.props.className}>
                     Ext 1:
                     <input type="checkbox"

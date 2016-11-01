@@ -59,9 +59,6 @@ var LevelOneTwo = React.createClass({
                 <h5>
                     Level 1:
                 </h5>
-                    <Usage id="level-1-usage"
-                        usage={usage("first")}
-                        placement="left"/>
                     <input type="text"
                         name="level_1"
                         value={
@@ -73,13 +70,13 @@ var LevelOneTwo = React.createClass({
                         }
                         onChange={(event)=> {this.setState({level1:event.target.value})}}
                         onBlur={this.handleBlur}/>
+                    <Usage id="level-1-usage"
+                        usage={usage("first")}
+                        placement="auto top"/>
                     <br/>
                 <h5>
                     Level 2:
                 </h5>
-                    <Usage id="level-2-usage"
-                        usage={usage("end")}
-                        placement="left"/>
                     <input type="text"
                         name="level_2"
                         value={
@@ -91,6 +88,9 @@ var LevelOneTwo = React.createClass({
                         }
                         onChange={(event)=> {this.setState({level2:event.target.value})}}
                         onBlur={this.handleBlur}/>
+                    <Usage id="level-2-usage"
+                        usage={usage("end")}
+                        placement="auto bottom"/>
 
             </div>
         );
