@@ -1,4 +1,5 @@
 import React from 'react'
+var NOP = ()=>{}
 
 var Usage = React.createClass({
     propTypes: {

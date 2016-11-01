@@ -1,6 +1,7 @@
 /* global $ */
 import React from 'react'
 import Usage from '../Usage'
+var NOP = ()=>{}
 
 function verify(value) {
     let new_value;
