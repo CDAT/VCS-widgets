@@ -5,7 +5,7 @@ var NOP = ()=>{}
 
 function verify(value) {
     if (typeof(value) === 'string') {
-        if(value.match(/^[\+-]?[0-9]+(\.?e\+?[0-9]+)?$/)) {
+        if(value.match(/^[\+-]?[0-9]+((\.[0-9]+)?e\+?[0-9]+)?$/)) {
             return Number.parseFloat(value);
         } else {
             return false;
