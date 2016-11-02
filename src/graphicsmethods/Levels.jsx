@@ -10,8 +10,6 @@ function verify(value) {
         } else {
             return false;
         }
-    } else {
-        console.log( "levels is not a string")
     }
 }
 function handleChange(event) {
@@ -47,7 +45,6 @@ var Levels = React.createClass({
         if (value === 0 || value) {
             this.props.handleChange(property_name, value, index)
         } else {
-            console.log(property_name + " must be an integer or 1e+20");
             this.setState({
                 levels: this.props.levels
             });

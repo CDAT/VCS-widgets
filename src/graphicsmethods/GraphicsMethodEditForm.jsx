@@ -35,6 +35,7 @@ let new_name = (that, graphicsMethods, gm, parent) => {
 };
 var GraphicsMethodEditForm = React.createClass({
     propTypes: {
+        colormaps: React.PropTypes.array,
         graphicsMethod: React.PropTypes.string,
         graphicsMethodParent: React.PropTypes.string,
         gmProps: React.PropTypes.object,
@@ -80,23 +81,19 @@ var GraphicsMethodEditForm = React.createClass({
         } else if (property_name.match(/levels_[0-9]+/)) {
             let level_index = Number.parseInt(property_name.split('_')[1]);
             cur_gmProps['levels'][level_index] = event.target.value;
-            console.log(cur_gmProps['levels'][level_index], typeof(cur_gmProps['levels'][level_index]))
         } else {
             cur_gmProps[property_name] = event.target.value;
         }
         this.props.updateActiveGM(cur_gmProps, this.props.graphicsMethodParent, this.props.graphicsMethod);
-        console.log(cur_gmProps[property_name], typeof(cur_gmProps[property_name]));
     },
     changeState(property_name, value, index=null) {
         let cur_gmProps = Object.assign({}, this.props.gmProps);
         if(!index) {
             cur_gmProps[property_name] = value;
         } else {
-            console.log(index)
             cur_gmProps[property_name][index] = value;
         }
         this.props.updateActiveGM(cur_gmProps, this.props.graphicsMethodParent, this.props.graphicsMethod);
-        console.log(cur_gmProps[property_name], typeof(cur_gmProps[property_name]));
     },
     commitEdits() {
         let parent = this.props.graphicsMethodParent;
@@ -191,6 +188,12 @@ var GraphicsMethodEditForm = React.createClass({
                                         style={this.props.gmProps['fillareastyle']}
                                         indices={this.props.gmProps['fillareaindices']}
                                         opacity={this.props.gmProps['fillareaopacity']} />
+                                </div>
+                            </div>
+                            <div className='row'>
+                                <div className='col-md-12'>
+                                    <ColormapField colormap={this.props.gmProps['colormap']}
+                                        colormaps={this.props.colormaps} />
                                 </div>
                             </div>
                         </div>
