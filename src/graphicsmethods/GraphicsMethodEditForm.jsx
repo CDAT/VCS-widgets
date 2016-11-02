@@ -192,7 +192,8 @@ var GraphicsMethodEditForm = React.createClass({
                             </div>
                             <div className='row'>
                                 <div className='col-md-12'>
-                                    <ColormapField colormap={this.props.gmProps['colormap']}
+                                    <ColormapField handleChange={this.handleChange}
+                                        colormap={this.props.gmProps['colormap']}
                                         colormaps={this.props.colormaps} />
                                 </div>
                             </div>
