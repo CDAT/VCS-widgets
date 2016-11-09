@@ -86,8 +86,8 @@ var BoxfillEditor = React.createClass({
                     <div className='col-md-12'>
                         <Levels handleChange={this.props.changeState}
                             levels={this.props.gmProps['levels']}
-                            addLevel={this.addLevel}
-                            removeLevel={this.removeLevel} />
+                            addLevel={this.props.addLevel}
+                            removeLevel={this.props.removeLevel} />
                     </div>
                     <div className='col-md-12'>
                         <FillareaFields handleChange={this.props.handleChange}

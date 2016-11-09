@@ -39,6 +39,7 @@ var FillareaFields = React.createClass({
         })
     },
     handleBlur(event) {
+        // add data validation step
         this.props.handleChange(event);
     },
     render(){
@@ -57,7 +58,7 @@ var FillareaFields = React.createClass({
                         <h5>Type: </h5>
                         <select name='fillareastyle'
                             value={this.state.style ?this.state.style :'solid'}
-                            onChange={this.handleChange}
+                            onChange={this.props.handleChange}
                             className='form-control'>
                             <option value='solid'>solid</option>
                             <option value='hatch'>hatch</option>
