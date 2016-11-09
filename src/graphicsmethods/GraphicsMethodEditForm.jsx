@@ -13,6 +13,7 @@ import LevelOneTwo from './LevelOneTwo'
 import Missing from './Missing'
 import Projection from './Projection'
 import Legend from './Legend'
+import EditName from './EditName'
 
 let new_name = (that, graphicsMethods, gm, parent) => {
     // replace this with some sort of call that gets the base gm names for the specific gm
@@ -118,6 +119,8 @@ var GraphicsMethodEditForm = React.createClass({
                     <div className='modal-body'>
                         <div className="container-fluid">
                             <div className='col-md-12'>
+                                <EditName name={this.state.gmEditName}
+                                    change={this.gmEditNameChange}/>
                                 <div className='row'>
                                     <h3>{"Name for new GM"}</h3>
                                     <input type='text'
@@ -215,7 +218,7 @@ var GraphicsMethodEditForm = React.createClass({
         else {
             return (
                 <div>
-                    <h5> Please select one of the Graphics Methods from the list on the left side bar. </h5>
+                    <h5> Please select a Graphics Method to edit</h5>
                 </div>
             )
         }
