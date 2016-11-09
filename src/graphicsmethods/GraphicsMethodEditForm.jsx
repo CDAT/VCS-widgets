@@ -1,19 +1,5 @@
 import React from 'react'
 import $ from 'jquery'
-import ColormapField from './ColormapField'
-import BoxfillType from './BoxfillType'
-import ColorOneTwo from './ColorOneTwo'
-import DatawcCoordinates from './DatawcCoordinates'
-import Exts from './Exts'
-import TicsAndLabels from './TicsAndLabels'
-import AxisTransforms from './AxisTransforms'
-import Levels from './Levels'
-import FillareaFields from './FillareaFields'
-import LevelOneTwo from './LevelOneTwo'
-import Missing from './Missing'
-import Projection from './Projection'
-import Legend from './Legend'
-import BoxfillEditor from './BoxfillEditor'
 
 let new_name = (that, graphicsMethods, gm, parent) => {
     let name = that.state.gmEditName ?that.state.gmEditName :gm;

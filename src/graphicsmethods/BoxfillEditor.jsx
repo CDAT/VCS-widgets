@@ -1,4 +1,17 @@
 import React from 'react'
+import ColormapField from './ColormapField'
+import BoxfillType from './BoxfillType'
+import ColorOneTwo from './ColorOneTwo'
+import DatawcCoordinates from './DatawcCoordinates'
+import Exts from './Exts'
+import TicsAndLabels from './TicsAndLabels'
+import AxisTransforms from './AxisTransforms'
+import Levels from './Levels'
+import FillareaFields from './FillareaFields'
+import LevelOneTwo from './LevelOneTwo'
+import Missing from './Missing'
+import Projection from './Projection'
+import Legend from './Legend'
 import EditName from './EditName'
 
 var BoxfillEditor = React.createClass({
