@@ -1,4 +1,5 @@
 import React from 'react'
+import EditName from './EditName'
 
 var BoxfillEditor = React.createClass({
     propTypes: {
