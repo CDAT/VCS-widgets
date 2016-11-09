@@ -14,6 +14,7 @@ import Missing from './Missing'
 import Projection from './Projection'
 import Legend from './Legend'
 import EditName from './EditName'
+import BoxfillEditor from './BoxfillEditor'
 
 let new_name = (that, graphicsMethods, gm, parent) => {
     let name = that.state.gmEditName ?that.state.gmEditName :gm;
