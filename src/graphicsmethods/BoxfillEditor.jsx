@@ -35,17 +35,17 @@ var BoxfillEditor = React.createClass({
                 <div className='col-md-12'>
                     <h4>Boxfill Settings</h4>
                     <div className='col-md-12'>
-                        <BoxfillType handleChange={this.handleChange}
+                        <BoxfillType handleChange={this.props.handleChange}
                             type={this.props.gmProps['boxfill_type']}
                             headerClass='col-md-4'
                             radioClass='col-md-4'/>
                     </div>
                     <div className='row'>
                         <div className='col-md-12'>
-                            <Missing handleChange={this.changeState}
+                            <Missing handleChange={this.props.changeState}
                                 missing={this.props.gmProps['missing']}
                                 className='col-md-6'/>
-                            <Exts handleChange={this.handleChange}
+                            <Exts handleChange={this.props.handleChange}
                                 ext1={this.props.gmProps['ext_1']}
                                 ext2={this.props.gmProps['ext_2']}
                                 className={
@@ -56,7 +56,7 @@ var BoxfillEditor = React.createClass({
                     </div>
                     <div className='row'>
                         <div className='col-md-12'>
-                            <Legend handleChange={this.handleChange}
+                            <Legend handleChange={this.props.handleChange}
                                 legend={this.props.gmProps['legend']}
                                 className='col-md-12'/>
                         </div>
@@ -68,12 +68,12 @@ var BoxfillEditor = React.createClass({
                     : 'hide'}>
                     <h4>Linear and Log Settings</h4>
                     <div className="col-md-6">
-                        <LevelOneTwo handleChange={this.changeState}
+                        <LevelOneTwo handleChange={this.props.changeState}
                             level1={this.props.gmProps['level_1']}
                             level2={this.props.gmProps['level_2']} />
                     </div>
                     <div className="col-md-6">
-                        <ColorOneTwo handleChange={this.changeState}
+                        <ColorOneTwo handleChange={this.props.changeState}
                             color1={this.props.gmProps['color_1']}
                             color2={this.props.gmProps['color_2']} />
                     </div>
@@ -84,13 +84,13 @@ var BoxfillEditor = React.createClass({
                     : 'hide'}>
                     <h4>Custom Settings</h4>
                     <div className='col-md-12'>
-                        <Levels handleChange={this.changeState}
+                        <Levels handleChange={this.props.changeState}
                             levels={this.props.gmProps['levels']}
                             addLevel={this.addLevel}
                             removeLevel={this.removeLevel} />
                     </div>
                     <div className='col-md-12'>
-                        <FillareaFields handleChange={this.handleChange}
+                        <FillareaFields handleChange={this.props.handleChange}
                             colors={this.props.gmProps['fillareacolors']}
                             style={this.props.gmProps['fillareastyle']}
                             indices={this.props.gmProps['fillareaindices']}
@@ -99,7 +99,7 @@ var BoxfillEditor = React.createClass({
                 </div>
                 <div className='row'>
                     <div className='col-md-12'>
-                        <ColormapField handleChange={this.handleChange}
+                        <ColormapField handleChange={this.props.handleChange}
                             colormap={this.props.gmProps['colormap']}
                             colormaps={this.props.colormaps} />
                     </div>
