@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+import BoxfillEditor from './BoxfillEditor'
 
 let new_name = (that, graphicsMethods, gm, parent) => {
     let name = that.state.gmEditName ?that.state.gmEditName :gm;
