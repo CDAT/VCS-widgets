@@ -1,16 +1,22 @@
 import React from 'react'
 
 var BoxfillEditor = React.createClass({
+    propTypes: {
+        addLevel: React.PropTypes.func,
+        changeState: React.PropTypes.func,
+        colormaps: React.PropTypes.array,
+        gmProps: React.PropTypes.object,
+        gmEditName: React.PropTypes.string,
+        gmEditNameChange: React.PropTypes.func,
+        handleChange: React.PropTypes.func,
+        removeLevel: React.PropTypes.func
+    },
     render() {
         return (
             <div className="container-fluid">
                 <div className='col-md-12'>
-                    <div className='row'>
-                        <h3>{"Name for new GM"}</h3>
-                        <input type='text'
-                            value={this.state.gmEditName}
-                            onChange={this.gmEditNameChange}/>
-                    </div>
+                    <EditName name={this.props.gmEditName}
+                        change={this.props.gmEditNameChange}/>
                 </div>
                 <div className='col-md-12'>
                     <h4>Boxfill Settings</h4>
