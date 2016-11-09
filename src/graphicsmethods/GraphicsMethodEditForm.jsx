@@ -6,7 +6,7 @@ let new_name = (that, graphicsMethods, gm, parent) => {
     let name = that.state.gmEditName ?that.state.gmEditName :gm;
     let i;
     // don't squash the base graphics methods
-    if (graphicsMethods[parent][gm]['default_method']) {
+    if (graphicsMethods[parent]["vcs_defaults"].includes(name)) {
         i=0;
         do {
             ++i;
