@@ -6,7 +6,7 @@ let new_name = (that, graphicsMethods, gm, parent) => {
     let name = that.state.gmEditName ?that.state.gmEditName :gm;
     let i;
     // don't squash the base graphics methods
-    if (this.props.default_methods[parent].includes(name)) {
+    if (that.props.defaultMethods[parent].includes(name)) {
         i=0;
         do {
             ++i;
