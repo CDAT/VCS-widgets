@@ -1,4 +1,5 @@
 import React from 'react'
+import Usage from '../Usage'
 
 var Legend = React.createClass({
     propTypes: {
@@ -17,6 +18,7 @@ var Legend = React.createClass({
         })
     },
     render() {
+        let usage = "Specify the desired legend labels () or [] or {} or None to let VCS handle"
         return (
             <div className={this.props.className}>
                 <h5>Legend Labels: </h5>
@@ -25,6 +27,7 @@ var Legend = React.createClass({
                         value={this.state.legend ? this.state.legend: ''}
                         onChange={(event)=>{this.setState({legend:event.target.value})}}
                         onBlur={this.props.handleChange}/>
+                    <Usage usage={usage}/>
             </div>
         );
     }
