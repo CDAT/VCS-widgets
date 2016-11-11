@@ -50,15 +50,19 @@ var DatawcCoordinates = React.createClass({
             // set usage, reset state
             switch(name){
                 case "datawc_x1":
+                    $('#x1-usage').focus()
                     this.setState({x1: this.props.x1});
                     break;
                 case "datawc_x2":
+                    $('#x2-usage').focus()
                     this.setState({x2: this.props.x2});
                     break;
                 case "datawc_y1":
+                    $('#y1-usage').focus()
                     this.setState({y1: this.props.y1});
                     break;
                 case "datawc_y2":
+                    $('#y2-usage').focus()
                     this.setState({y2: this.props.y2});
                     break;
             }
@@ -79,7 +83,8 @@ var DatawcCoordinates = React.createClass({
                             }
                             onChange={(event)=>this.setState({x1: event.target.value})}
                             onBlur={this.handleBlur}/>
-                        <Usage usage="Longitude value representing where the plot's x axis should start"/>
+                        <Usage id="x1-usage"
+                            usage="Longitude value representing where the plot's x axis should start"/>
                     </div>
                     <div className='col-md-6'>
                         <h5>datawc_x2: </h5>
