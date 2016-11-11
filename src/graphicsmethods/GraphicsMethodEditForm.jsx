@@ -123,7 +123,8 @@ var GraphicsMethodEditForm = React.createClass({
             if (cur_gmProps[label_name] !== null && typeof cur_gmProps[label_name] === 'object') {
                 cur_gmProps[label_name][slider_value] = '';
             } else {
-                cur_gmProps[label_name] = {slider_value: ''};
+                cur_gmProps[label_name] = {};
+                cur_gmProps[label_name][slider_value] = '';
             }
             this.props.updateActiveGM(cur_gmProps, this.props.graphicsMethodParent, this.props.graphicsMethod);
         }
