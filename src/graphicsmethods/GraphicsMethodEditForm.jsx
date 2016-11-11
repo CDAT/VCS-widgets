@@ -45,7 +45,8 @@ var GraphicsMethodEditForm = React.createClass({
     },
     getInitialState() {
         return {
-            gmEditName: this.props.graphicsMethod
+            gmEditName: this.props.graphicsMethod,
+            xtl1Slider: "0"
         }
     },
     componentWillUpdate() {
@@ -110,6 +111,22 @@ var GraphicsMethodEditForm = React.createClass({
         this.setState({
             gmEditName: event.target.value
         });
+    },
+    addLabel(event) {
+        let label_name = event.target.name
+        let slider_value =  $('#'+label_name+'-slider').val()
+        if (this.props.gmProps[label_name]) {
+            // probably don't want to squash this label
+        } else {
+            // everything is cool, create a new empty label at slider_value index of gmProps, and updateActiveGM
+        }
+
+    },
+    updateLabel(event) {
+        let cur_gmProps = Object.assign({}, this.props.gmProps);
+        let name = event.target.name;
+        cur_gmProps[name] = Number.parseFloat(event.target.value);
+        this.props.updateActiveGM(cur_gmProps, this.props.graphicsMethodParent, this.props.graphicsMethod);
     },
     render() {
         if (!this.props.gmProps.no_gm_selected) {
@@ -219,6 +236,45 @@ var GraphicsMethodEditForm = React.createClass({
                             data-dismiss="modal">
                             Save changes
                         </button>
+                    </div>
+                    <div id='ticlabels'>
+                        <h5>xticlabels1: </h5>
+                        <label>
+                            {Math.abs(Number.parseFloat(this.state.xtl1Slider))} &deg;
+                            {
+                                Number.parseFloat(this.state.xtl1Slider) < 0
+                                    ? "W longitude"
+                                    : Number.parseFloat(this.state.xtl1Slider) === 0
+                                        ? "Prime Meridian"
+                                        : "E longitude"
+                            }
+                        </label>
+                        <input type='range'
+                            id="xticlabels1-slider"
+                            step="0.001"
+                            min="-180"
+                            max="180"
+                            value={this.state.xtl1Slider}
+                            onChange={(event)=>{this.setState({xtl1Slider: event.target.value})}}/>
+                        <button name='xticlabels1' onClick={this.addLabel}>Add Label</button>
+                        <div id='xtl1-labels'>
+                            {
+                                this.props.xtl1 !== null && typeof this.props.xtl1 === 'object'
+                                ? Object.keys(this.props.gmProps['xticlabels1']).map((value, index)=>{
+                                    return (
+                                        <div id={"xtl1-index"+index} key={"xtl1-"+index}>
+                                            <label>{value}</label>
+                                            <input type='text'
+                                                name="xticlabels1"
+                                                value={this.state.xtl1}
+                                                onChange={(event)=>{this.setState({xtl1: event.target.value})}}
+                                                onBlur={this.updateLabel} />
+                                        </div>
+                                    )
+                                })
+                                : ''
+                            }
+                        </div>
                     </div>
                 </div>
             )

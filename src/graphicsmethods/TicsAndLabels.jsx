@@ -1,6 +1,11 @@
 import React from 'react'
+import Usage from '../Usage'
 
-function validate(value) {
+function validateTics(value) {
+
+}
+function validateLabels(value) {
+    // must be a valid JSON with float=>string mappings
 
 }
 var TicsAndLabels = React.createClass({
@@ -16,12 +21,13 @@ var TicsAndLabels = React.createClass({
         ytl2: React.PropTypes.string
     },
     handleBlur(event) {
-        let name = event.target.name;
-        let value = validate(event.target.value);
 
     },
+    readSlider(event){
+        let label_name = event.target.name
+        let slider_value =  $('#'+label_name).val()
+    },
     render(){
-        var that = this.props.that;
         return (
             <div>
                 <div id='mtics'>
@@ -52,6 +58,24 @@ var TicsAndLabels = React.createClass({
                 </div>
                 <div id='ticlabels'>
                     <h5>xticlabels1: </h5>
+                    <input id='xtl1'
+                        type='range'
+                        step="0.001"
+                        min="-180"
+                        max="180"
+                        defaultValue="0"
+                        onChange={(event)=>{this.setState({xtl1Slider: event.target.value})}}/>
+                    <button name='xtl1' onClick={this.readSlider}>Add Label {this.state.xtl1Slider}</button>
+                    <div id='xtl1-labels'>
+                        {
+                            this.props.xtl1 !== null && typeof this.props.xtl1 === 'object'
+                            ? Object.keys(this.props.xtl1).map((value, index)=>{
+
+                            })
+                            : ''
+                        }
+                    </div>
+
                     <input name='xticlabels1'
                         type='text'
                         defaultValue={this.props.xtl1}
