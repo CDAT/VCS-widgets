@@ -78,7 +78,8 @@ var DatawcCoordinates = React.createClass({
         let y2_usage = "Latitude value representing where the plot's y axis should start.\n"+
                        "Values must be numbers from -90 to 90 (degrees of latitude)."
         return (
-            <div>
+            <div className='col-md-12'>
+                <h4>World Coordinates</h4>
                 <div className="row">
                     <div className='col-md-6'>
                     <h5> datawc_x1: </h5>
