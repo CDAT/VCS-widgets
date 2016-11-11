@@ -23,6 +23,14 @@ var DatawcCoordinates = React.createClass({
         y1: React.PropTypes.number,
         y2: React.PropTypes.number
     },
+    getInitialState(){
+        return {
+            x1: '',
+            x2: '',
+            y1: '',
+            y2: ''
+        }
+    },
     componentWillReceiveProps(nextProps) {
         this.setState({
             x1: nextProps.x1,
