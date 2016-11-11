@@ -1,9 +1,8 @@
 /* global $ */
 import React from 'react'
 import Usage from '../Usage'
-var NOP = ()=>{}
 
-function verify(value) {
+function validate(value) {
     let new_value;
     if (typeof(value) === 'string') {
         if(value.match(/[^0-9]+/) || value === '') {
@@ -40,7 +39,7 @@ var ColorOneTwo = React.createClass({
         });
     },
     handleBlur(event) {
-        let value = verify(event.target.value);
+        let value = validate(event.target.value);
         let name = event.target.name
         if (value === 0 || value) {
             this.props.handleChange(name, value)
