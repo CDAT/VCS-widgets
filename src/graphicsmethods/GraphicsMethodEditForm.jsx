@@ -114,11 +114,18 @@ var GraphicsMethodEditForm = React.createClass({
     },
     addLabel(event) {
         let label_name = event.target.name
-        let slider_value =  $('#'+label_name+'-slider').val()
+        let slider_value =  Number.parseFloat($('#'+label_name+'-slider').val())
         if (this.props.gmProps[label_name]) {
             // probably don't want to squash this label
         } else {
             // everything is cool, create a new empty label at slider_value index of gmProps, and updateActiveGM
+            let cur_gmProps = Object.assign({}, this.props.gmProps);
+            if (cur_gmProps[label_name] !== null && typeof cur_gmProps[label_name] === 'object') {
+                cur_gmProps[label_name][slider_value] = '';
+            } else {
+                cur_gmProps[label_name] = {slider_value: ''};
+            }
+            this.props.updateActiveGM(cur_gmProps, this.props.graphicsMethodParent, this.props.graphicsMethod);
         }
 
     },
@@ -266,8 +273,7 @@ var GraphicsMethodEditForm = React.createClass({
                                             <label>{value}</label>
                                             <input type='text'
                                                 name="xticlabels1"
-                                                value={this.state.xtl1}
-                                                onChange={(event)=>{this.setState({xtl1: event.target.value})}}
+                                                defaultValue={this.props.gmProps['xticlabels1'][value]}
                                                 onBlur={this.updateLabel} />
                                         </div>
                                     )
