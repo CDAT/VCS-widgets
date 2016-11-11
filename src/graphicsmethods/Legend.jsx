@@ -18,7 +18,6 @@ var Legend = React.createClass({
         })
     },
     render() {
-        let usage = "Specify the desired legend labels () or [] or {} or None to let VCS handle"
         return (
             <div className={this.props.className}>
                 <h5>Legend Labels: </h5>

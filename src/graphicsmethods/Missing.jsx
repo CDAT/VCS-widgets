@@ -1,6 +1,5 @@
 import React from 'react'
 import Usage from '../Usage'
-var NOP = ()=>{}
 /* global $ */
 
 function verify(value) {
@@ -16,8 +15,6 @@ function verify(value) {
                 return new_value;
             }
         }
-    } else {
-        console.log("Missing is not a string")
     }
 }
 var Missing = React.createClass({
