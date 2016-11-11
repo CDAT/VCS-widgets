@@ -1,4 +1,5 @@
 import React from 'react'
+import Usage from '../Usage'
 
 function validate(value, maximum) {
     if (typeof(value) === 'string') {

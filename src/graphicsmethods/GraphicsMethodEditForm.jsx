@@ -197,6 +197,11 @@ var GraphicsMethodEditForm = React.createClass({
                                         colormaps={this.props.colormaps} />
                                 </div>
                             </div>
+                            <DatawcCoordinates handleChange={this.changeState}
+                                x1={this.props.gmProps['datawc_x1']}
+                                x2={this.props.gmProps['datawc_x2']}
+                                y1={this.props.gmProps['datawc_y1']}
+                                y2={this.props.gmProps['datawc_y2']} />
                         </div>
                     </div>
                     <div className="modal-footer">
