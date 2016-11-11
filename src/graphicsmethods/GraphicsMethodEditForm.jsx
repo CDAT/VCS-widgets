@@ -232,6 +232,44 @@ var GraphicsMethodEditForm = React.createClass({
                                 x2={this.props.gmProps['datawc_x2']}
                                 y1={this.props.gmProps['datawc_y1']}
                                 y2={this.props.gmProps['datawc_y2']} />
+                            <div id='ticlabels'>
+                                <h5>xticlabels1: </h5>
+                                <label>
+                                    {Math.abs(Number.parseFloat(this.state.xtl1Slider))} &deg;
+                                    {
+                                        Number.parseFloat(this.state.xtl1Slider) < 0
+                                            ? "W longitude"
+                                            : Number.parseFloat(this.state.xtl1Slider) === 0
+                                                ? "Prime Meridian"
+                                                : "E longitude"
+                                    }
+                                </label>
+                                <input type='range'
+                                    id="xticlabels1-slider"
+                                    step="0.001"
+                                    min="-180"
+                                    max="180"
+                                    value={this.state.xtl1Slider}
+                                    onChange={(event)=>{this.setState({xtl1Slider: event.target.value})}}/>
+                                <button name='xticlabels1' onClick={this.addLabel}>Add Label</button>
+                                <div id='xtl1-labels'>
+                                    {
+                                        this.props.gmProps['xticlabels1'] !== null && typeof this.props.gmProps['xticlabels1'] === 'object'
+                                        ? Object.keys(this.props.gmProps['xticlabels1']).map((value, index)=>{
+                                            return (
+                                                <div id={"xtl1-index"+index} key={"xtl1-"+index}>
+                                                    <label>{value}</label>
+                                                    <input type='text'
+                                                        name="xticlabels1"
+                                                        defaultValue={this.props.gmProps['xticlabels1'][value]}
+                                                        onBlur={this.updateLabel} />
+                                                </div>
+                                            )
+                                        })
+                                        : ''
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="modal-footer">
@@ -243,44 +281,6 @@ var GraphicsMethodEditForm = React.createClass({
                             data-dismiss="modal">
                             Save changes
                         </button>
-                    </div>
-                    <div id='ticlabels'>
-                        <h5>xticlabels1: </h5>
-                        <label>
-                            {Math.abs(Number.parseFloat(this.state.xtl1Slider))} &deg;
-                            {
-                                Number.parseFloat(this.state.xtl1Slider) < 0
-                                    ? "W longitude"
-                                    : Number.parseFloat(this.state.xtl1Slider) === 0
-                                        ? "Prime Meridian"
-                                        : "E longitude"
-                            }
-                        </label>
-                        <input type='range'
-                            id="xticlabels1-slider"
-                            step="0.001"
-                            min="-180"
-                            max="180"
-                            value={this.state.xtl1Slider}
-                            onChange={(event)=>{this.setState({xtl1Slider: event.target.value})}}/>
-                        <button name='xticlabels1' onClick={this.addLabel}>Add Label</button>
-                        <div id='xtl1-labels'>
-                            {
-                                this.props.gmProps['xticlabels1'] !== null && typeof this.props.gmProps['xticlabels1'] === 'object'
-                                ? Object.keys(this.props.gmProps['xticlabels1']).map((value, index)=>{
-                                    return (
-                                        <div id={"xtl1-index"+index} key={"xtl1-"+index}>
-                                            <label>{value}</label>
-                                            <input type='text'
-                                                name="xticlabels1"
-                                                defaultValue={this.props.gmProps['xticlabels1'][value]}
-                                                onBlur={this.updateLabel} />
-                                        </div>
-                                    )
-                                })
-                                : ''
-                            }
-                        </div>
                     </div>
                 </div>
             )
