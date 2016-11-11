@@ -69,6 +69,14 @@ var DatawcCoordinates = React.createClass({
         }
     },
     render(){
+        let x1_usage = "Longitude value representing where the plot's x axis should start.\n"+
+                       "Values must be numbers from -180 to 180 (degrees of longitude)."
+        let x2_usage = "Longitude value representing where the plot's x axis should end.\n"+
+                       "Values must be numbers from -180 to 180 (degrees of longitude)."
+        let y1_usage = "Latitude value representing where the plot's y axis should start.\n"+
+                       "Values must be numbers from -90 to 90 (degrees of latitude)."
+        let y2_usage = "Latitude value representing where the plot's y axis should start.\n"+
+                       "Values must be numbers from -90 to 90 (degrees of latitude)."
         return (
             <div>
                 <div className="row">
@@ -83,8 +91,7 @@ var DatawcCoordinates = React.createClass({
                             }
                             onChange={(event)=>this.setState({x1: event.target.value})}
                             onBlur={this.handleBlur}/>
-                        <Usage id="x1-usage"
-                            usage="Longitude value representing where the plot's x axis should start"/>
+                        <Usage id="x1-usage" usage={x1_usage}/>
                     </div>
                     <div className='col-md-6'>
                         <h5>datawc_x2: </h5>
@@ -97,8 +104,7 @@ var DatawcCoordinates = React.createClass({
                             }
                             onChange={(event)=>this.setState({x2: event.target.value})}
                             onBlur={this.handleBlur}/>
-                        <Usage id="x2-usage"
-                            usage="Longitude value representing where the plot's x axis should end"/>
+                        <Usage id="x2-usage" usage={x2_usage}/>
                     </div>
                 </div>
                 <div className="row">
@@ -113,8 +119,7 @@ var DatawcCoordinates = React.createClass({
                             }
                             onChange={(event)=>this.setState({y1: event.target.value})}
                             onBlur={this.handleBlur}/>
-                        <Usage id="y1-usage"
-                            usage="Latitude value representing where the plot's y axis should start"/>
+                        <Usage id="y1-usage" usage={y1_usage}/>
                     </div>
                     <div className='col-md-6'>
                         <h5>datawc_y2: </h5>
@@ -127,8 +132,7 @@ var DatawcCoordinates = React.createClass({
                             }
                             onChange={(event)=>this.setState({y2: event.target.value})}
                             onBlur={this.handleBlur}/>
-                        <Usage id="y2-usage"
-                            usage="Latitude value representing where the plot's y axis should end"/>
+                        <Usage id="y2-usage" usage={y2_usage}/>
                     </div>
                 </div>
             </div>
