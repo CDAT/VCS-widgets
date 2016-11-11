@@ -259,7 +259,7 @@ var GraphicsMethodEditForm = React.createClass({
                         <button name='xticlabels1' onClick={this.addLabel}>Add Label</button>
                         <div id='xtl1-labels'>
                             {
-                                this.props.xtl1 !== null && typeof this.props.xtl1 === 'object'
+                                this.props.gmProps['xticlabels1'] !== null && typeof this.props.gmProps['xticlabels1'] === 'object'
                                 ? Object.keys(this.props.gmProps['xticlabels1']).map((value, index)=>{
                                     return (
                                         <div id={"xtl1-index"+index} key={"xtl1-"+index}>
