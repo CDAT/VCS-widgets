@@ -38,6 +38,19 @@ var Levels = React.createClass({
             levels: nextProps.levels
         })
     },
+    addLevel() {
+        let cur_gmProps = Object.assign({}, this.props.gmProps);
+        cur_gmProps['levels'] = cur_gmProps['levels'].concat(1e+20);
+        this.props.updateActiveGM(cur_gmProps, this.props.graphicsMethodParent, this.props.graphicsMethod);
+    },
+    removeLevel(event) {
+        let index = Number.parseInt(event.target.getAttribute('data-index'));
+        let cur_gmProps = Object.assign({}, this.props.gmProps);
+        let cur_levels = cur_gmProps['levels'];
+        let new_levels = cur_levels.slice(0, index).concat(cur_levels.slice((index + 1), cur_levels.length));
+        cur_gmProps['levels'] = new_levels;
+        this.props.updateActiveGM(cur_gmProps, this.props.graphicsMethodParent, this.props.graphicsMethod);
+    },
     handleBlur(event) {
         let property_name = event.target.name.split('_')[0];
         let index = event.target.name.split('_')[1];
@@ -92,7 +105,7 @@ var Levels = React.createClass({
                     : <span>
                         <button onClick={this.props.addLevel} className='btn btn-secondary'> + </button>
                         <Usage id={'levels-usage'}
-                            usage={usage} />
+                            usage={"Add a level"} />
                       </span>
 
                 }

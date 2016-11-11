@@ -202,6 +202,7 @@ var GraphicsMethodEditForm = React.createClass({
                                 x2={this.props.gmProps['datawc_x2']}
                                 y1={this.props.gmProps['datawc_y1']}
                                 y2={this.props.gmProps['datawc_y2']} />
+                            <Projection projection={this.gmProps['projection']} handleChange={this.handleChange}/>
                         </div>
                     </div>
                     <div className="modal-footer">

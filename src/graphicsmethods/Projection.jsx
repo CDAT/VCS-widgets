@@ -9,7 +9,7 @@ var Projection = React.createClass({
         return (
             <div id='projection-selector'>
                 <h5>Projection: </h5>
-                <select name="projection" defaultValue={this.props.projection} onChange={this.props.handleChange}>
+                <select name="projection" value={this.props.projection} onChange={this.props.handleChange}>
                     <option value='default'>Default</option>
                     <option value='lambert'>Lambert</option>
                     <option value='linear'>Linear</option>
