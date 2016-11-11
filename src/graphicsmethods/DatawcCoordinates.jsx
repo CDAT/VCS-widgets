@@ -1,11 +1,12 @@
 import React from 'react'
 import Usage from '../Usage'
+/* global $ */
 
 function validate(value, maximum) {
     if (typeof(value) === 'string') {
         if(value.match(/^[\+-]?[0-9]+(\.[0-9]+)?$/)) {
             let new_value = Number.parseFloat(value);
-            if(Math.abs(new_value) > absMax){
+            if(Math.abs(new_value) > maximum){
                 return false;
             } else {
                 return new_value;
@@ -66,7 +67,8 @@ var DatawcCoordinates = React.createClass({
     render(){
         return (
             <div>
-                <h5> datawc_x1: </h5>
+                <div className="row">
+                    <h5> datawc_x1: </h5>
                     <input type="text"
                         name="datawc_x1"
                         value={
@@ -75,7 +77,7 @@ var DatawcCoordinates = React.createClass({
                             : this.state.x1
                         }
                         onChange={(event)=>this.setState({x1: event.target.value})}
-                        onBlur={this.handleBlur}/> <br/>
+                        onBlur={this.handleBlur}/>
                     <Usage usage="Longitude value representing where the plot's x axis should start"/>
                     <h5>datawc_x2: </h5>
                     <input type="text"
@@ -86,9 +88,11 @@ var DatawcCoordinates = React.createClass({
                             : this.state.x2
                         }
                         onChange={(event)=>this.setState({x2: event.target.value})}
-                        onBlur={this.handleBlur}/> <br/>
+                        onBlur={this.handleBlur}/>
                     <Usage id="x2-usage"
                         usage="Longitude value representing where the plot's x axis should end"/>
+                </div>
+                <div className="row">
                     <h5>datawc_y1: </h5>
                     <input type="text"
                         name="datawc_y1"
@@ -98,7 +102,7 @@ var DatawcCoordinates = React.createClass({
                             : this.state.y1
                         }
                         onChange={(event)=>this.setState({y1: event.target.value})}
-                        onBlur={this.handleBlur}/> <br/>
+                        onBlur={this.handleBlur}/>
                     <Usage id="y1-usage"
                         usage="Latitude value representing where the plot's y axis should start"/>
                     <h5>datawc_y2: </h5>
@@ -110,9 +114,10 @@ var DatawcCoordinates = React.createClass({
                             : this.state.y2
                         }
                         onChange={(event)=>this.setState({y2: event.target.value})}
-                        onBlur={this.handleBlur}/> <br/>
+                        onBlur={this.handleBlur}/>
                     <Usage id="y2-usage"
                         usage="Latitude value representing where the plot's y axis should end"/>
+                </div>
             </div>
         );
     }
