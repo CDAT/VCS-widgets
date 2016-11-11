@@ -70,7 +70,7 @@ var DatawcCoordinates = React.createClass({
                     <input type="text"
                         name="datawc_x1"
                         value={
-                            Number.isFloat(this.state.x1) && this.state.x1 > 1e4
+                            typeof this.state.x1 === "number" && this.state.x1 > 1e4
                             ? this.state.x1.toExponential()
                             : this.state.x1
                         }
@@ -81,7 +81,7 @@ var DatawcCoordinates = React.createClass({
                     <input type="text"
                         name="datawc_x2"
                         value={
-                            Number.isFloat(this.state.x2) && this.state.x2 > 1e4
+                            typeof this.state.x2 === "number" && this.state.x2 > 1e4
                             ? this.state.x2.toExponential()
                             : this.state.x2
                         }
@@ -93,7 +93,7 @@ var DatawcCoordinates = React.createClass({
                     <input type="text"
                         name="datawc_y1"
                         value={
-                            Number.isFloat(this.state.y1) && this.state.y1 > 1e4
+                            typeof this.state.y1 === "number" && this.state.y1 > 1e4
                             ? this.state.y1.toExponential()
                             : this.state.y1
                         }
@@ -105,7 +105,7 @@ var DatawcCoordinates = React.createClass({
                     <input type="text"
                         name="datawc_y2"
                         value={
-                            Number.isFloat(this.state.y2) && this.state.y2 > 1e4
+                            typeof this.state.y2 === "number" && this.state.y2 > 1e4
                             ? this.state.y2.toExponential()
                             : this.state.y2
                         }
