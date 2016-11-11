@@ -203,7 +203,6 @@ var GraphicsMethodEditForm = React.createClass({
                                         handleChange={this.handleChange} />
                                 </div>
                             </div>
-
                             <DatawcCoordinates handleChange={this.changeState}
                                 x1={this.props.gmProps['datawc_x1']}
                                 x2={this.props.gmProps['datawc_x2']}
