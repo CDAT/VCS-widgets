@@ -1,4 +1,5 @@
 import React from 'react'
+import Usage from '../Usage'
 
 function validate(type, value) {
     switch(type) {
@@ -43,8 +44,31 @@ var FillareaFields = React.createClass({
         this.props.handleChange(event);
     },
     render(){
+        let colors_usage = "Level color index values. Index colors range from 0 to 255.\n"+
+                           "Use explicit indices, i.e.: 16, 32, 48, 64, 80\n"+
+                           "OR Use two indices to generate level range, i.e.: 16, 32"
         return (
             <div id='fillarea-fields' className={this.props.className}>
+                <div className='row'>
+                    <div className='col-md-6'>
+                        <h5>Ranges: </h5>
+                        <input type='text'
+                            name='fillareaopacity'
+                            value={this.state.opacity? this.state.opacity : []}
+                            onChange={(event)=> {this.setState({opacity:event.target.value})}}
+                            onBlur={this.handleBlur}/>
+                        <Usage usage={"Level ranges: (10,30,50) or ([10,20],[20,30],[30,50])"}/>
+                    </div>
+                    <div className='col-md-6'>
+                        <h5>Colors: </h5>
+                        <input type='text'
+                            name='fillareacolors'
+                            value={this.state.colors? this.state.colors : []}
+                            onChange={(event)=> {this.setState({colors:event.target.value})}}
+                            onBlur={this.handleBlur}/>
+                        <Usage usage={colors_usage}/>
+                    </div>
+                </div>
                 <div className='row'>
                     <div className='col-md-6'>
                         <h5>Patterns: </h5>
@@ -53,6 +77,7 @@ var FillareaFields = React.createClass({
                             value={this.state.indices? this.state.indices : []}
                             onChange={(event)=> {this.setState({indices:event.target.value})}}
                             onBlur={this.handleBlur}/>
+                        <Usage usage="Level pattern index values. Index range 0 to 18."/>
                     </div>
                     <div className='col-md-6'>
                         <h5>Type: </h5>
@@ -64,24 +89,6 @@ var FillareaFields = React.createClass({
                             <option value='hatch'>hatch</option>
                             <option value='pattern'>pattern</option>
                         </select>
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <h5>Colors: </h5>
-                        <input type='text'
-                            name='fillareacolors'
-                            value={this.state.colors? this.state.colors : []}
-                            onChange={(event)=> {this.setState({colors:event.target.value})}}
-                            onBlur={this.handleBlur}/>
-                    </div>
-                    <div className='col-md-6'>
-                        <h5>Fillareaopacity: </h5>
-                        <input type='text'
-                            name='fillareaopacity'
-                            value={this.state.opacity? this.state.opacity : []}
-                            onChange={(event)=> {this.setState({opacity:event.target.value})}}
-                            onBlur={this.handleBlur}/>
                     </div>
                 </div>
             </div>
