@@ -106,19 +106,7 @@ var GraphicsMethodEditForm = React.createClass({
                             gmEditName={this.state.gmEditName}
                             gmEditNameChange={this.gmEditNameChange}
                             handleChange={this.handleChange}
-                            removeLevel={this.removeLevel} 
-                        />
-                        <div className='row'>
-                            <div className='col-md-12'>
-                                <Projection projection={this.props.gmProps['projection']}
-                                    handleChange={this.handleChange} />
-                            </div>
-                        </div>
-                        <DatawcCoordinates handleChange={this.changeState}
-                            x1={this.props.gmProps['datawc_x1']}
-                            x2={this.props.gmProps['datawc_x2']}
-                            y1={this.props.gmProps['datawc_y1']}
-                            y2={this.props.gmProps['datawc_y2']} 
+                            removeLevel={this.removeLevel}
                         />
                     </div>
                     <div className="modal-footer">
