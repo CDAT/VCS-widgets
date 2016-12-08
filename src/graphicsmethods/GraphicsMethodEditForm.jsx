@@ -5,6 +5,7 @@ import BoxfillEditor from './BoxfillEditor'
 let new_name = (that, graphicsMethods, gm, parent) => {
     let name = that.state.gmEditName ?that.state.gmEditName :gm;
     let i;
+    /*
     // don't squash the base graphics methods
     if (that.props.defaultMethods[parent].includes(name)) {
         i=0;
@@ -15,6 +16,7 @@ let new_name = (that, graphicsMethods, gm, parent) => {
     } else {
         return name;
     }
+    */
 };
 var GraphicsMethodEditForm = React.createClass({
     propTypes: {
