@@ -1,5 +1,5 @@
 function color(props, propName, componentName) {
-  componentName = comopnentName || 'ANONYMOUS';
+  componentName = componentName || 'ANONYMOUS';
 
   if (props[propName]) {
     let value = props[propName];
