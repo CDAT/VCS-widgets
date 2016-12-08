@@ -1,5 +1,7 @@
 import React from 'react'
 import Usage from '../Usage'
+import ColorProp from '../validators/ColorProp.js'
+
 /* global $ */
 
 function verify(value) {
@@ -20,7 +22,7 @@ function verify(value) {
 var Missing = React.createClass({
     propTypes: {
         handleChange: React.PropTypes.func,
-        missing: React.PropTypes.number,
+        missing: ColorProp,
         className: React.PropTypes.string
     },
     getInitialState() {
