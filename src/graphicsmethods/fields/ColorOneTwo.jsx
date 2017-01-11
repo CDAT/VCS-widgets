@@ -1,6 +1,6 @@
 /* global $ */
 import React from 'react'
-import Usage from '../Usage'
+import Usage from '../../Usage'
 
 function validate(value) {
     let new_value;

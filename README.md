@@ -1,2 +1,3 @@
 # VCS-widgets
-JavaScript UI widgets for manipulating VCS JSON structures
+
+A React component library for forms that allow customization of JSON representations of [VCS's data structures](https://github.com/UV-CDAT/vcs) from the web browser.

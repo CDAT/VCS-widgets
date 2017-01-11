@@ -1,6 +1,6 @@
 import React from 'react'
-import Usage from '../Usage'
-import ColorProp from '../validators/ColorProp.js'
+import Usage from '../../Usage'
+import ColorProp from '../../validators/ColorProp.js'
 
 /* global $ */
 

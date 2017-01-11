@@ -1,5 +1,5 @@
 import React from 'react'
-import Usage from '../Usage'
+import Usage from '../../Usage'
 var NOP = ()=>{}
 
 var Exts = React.createClass({

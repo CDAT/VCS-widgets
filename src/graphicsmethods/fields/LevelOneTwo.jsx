@@ -1,5 +1,5 @@
 import React from 'react'
-import Usage from '../Usage'
+import Usage from '../../Usage'
 var NOP = ()=>{}
 /* global $ */
 
@@ -72,7 +72,7 @@ var LevelOneTwo = React.createClass({
                         onBlur={this.handleBlur}/>
                     <Usage id="level-1-usage"
                         usage={usage("first")}
-                        placement="auto top"/>
+                        placement="top"/>
                     <br/>
                 <h5>
                     Level 2:
@@ -90,7 +90,7 @@ var LevelOneTwo = React.createClass({
                         onBlur={this.handleBlur}/>
                     <Usage id="level-2-usage"
                         usage={usage("end")}
-                        placement="auto bottom"/>
+                        placement="bottom"/>
 
             </div>
         );
