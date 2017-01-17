@@ -1,36 +1,30 @@
 import React from 'react'
+import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
 
 var ColormapField = React.createClass({
     propTypes: {
         colormap: React.PropTypes.string,
-        handleChange: React.PropTypes.func,
+        updateGraphicsMethod: React.PropTypes.func,
         colormaps: React.PropTypes.array
     },
-    getDefaultProps(){
-        return {
-            colormap: 'default',
-            colormaps: ['default']
-        }
+    handleChange(e) {
+        const cmap = e.target.value;
+        this.props.updateGraphicsMethod("colormap", cmap);
     },
     render() {
+        let cmap = this.props.colormap;
+        if (cmap === null) {
+            cmap = "default";
+        }
         return (
-            <div>
-                <h5>Colormap: </h5>
-                <select name="colormap"
-                    value={
-                        this.props.colormap
-                        ? this.props.colormap
-                        : 'default'
-                    }
-                    onChange={this.props.handleChange}
-                    className='form-control'>
-                    {
-                        this.props.colormaps.map((value, index)=>{
-                            return (<option key={value+index} value={value}>{value}</option>);
-                        })
-                    }
-                </select>
-            </div>
+            <FormGroup controlId="colormap">
+                <ControlLabel>Colormap:</ControlLabel>
+                <FormControl onChange={this.handleChange} componentClass="select" value={this.props.colormap}>
+                    {this.props.colormaps.map((cmap, index) => {
+                        return <option key={index} value={cmap}>{cmap}</option>
+                    })}
+                </FormControl>
+            </FormGroup>
         );
     }
 });

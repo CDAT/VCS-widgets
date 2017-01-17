@@ -1,47 +1,21 @@
 import React from 'react'
+import {ControlLabel, FormGroup, Radio} from 'react-bootstrap'
 
 var BoxfillType = React.createClass({
     propTypes: {
-        handleChange: React.PropTypes.func,
+        updateGraphicsMethod: React.PropTypes.func,
         type: React.PropTypes.string,
-        headerClass: React.PropTypes.string,
-        radioClass: React.PropTypes.string
     },
     handleChange(event) {
-        this.props.handleChange(event);
+        this.props.updateGraphicsMethod("boxfill_type", event.target.value);
     },
     render(){
         return (
-            <div className='row'>
-                <div className={this.props.headerClass}>
-                    <h5>
-                        Boxfill type:
-                    </h5>
-                </div>
-                <div className={this.props.radioClass}>
-                    <input type='radio'
-                        name='boxfill_type'
-                        value='linear'
-                        id="bf-linear"
-                        onChange={this.handleChange}
-                        checked={
-                            this.props.type === 'linear'
-                            ? true
-                            :false
-                        }/> linear
-                </div>
-                <div className={this.props.radioClass}>
-                    <input type='radio'
-                        name='boxfill_type'
-                        value='custom'
-                        id="bf-custom"
-                        onChange={this.handleChange}
-                        checked={
-                            this.props.type === 'custom'
-                            ? true
-                            : false}/> custom
-                </div>
-            </div>
+            <FormGroup controlId="boxfill_type">
+                <ControlLabel>Boxfill Type:</ControlLabel>
+                <Radio value="linear" name="boxfill_type" onChange={this.handleChange} checked={this.props.type === "linear"} inline>Linear</Radio>
+                <Radio value="custom" name="boxfill_type" onChange={this.handleChange} checked={this.props.type === "custom"} inline>Custom</Radio>
+            </FormGroup>
         );
     }
 });
