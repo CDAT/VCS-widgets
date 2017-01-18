@@ -78,7 +78,7 @@ var ColorField = React.createClass({
         const cmap = this.props.colormap.map((c) => { return vcsToRGB.apply(this, c)} );
         return (
             <FormGroup controlId="{this.props.controlId}">
-                <ControlLabel>{this.props.label}</ControlLabel>
+                <ControlLabel style={{marginRight: '1em'}}>{this.props.label}</ControlLabel>
                 <ColorButton color={getRGBA(this.props.color, this.props.colormap)} action={this.openColorPicker} />
                 <Modal show={this.state.showModal} onHide={(e) => {this.setState({"showModal": false})}}>
                     <Modal.Header closeButton>

@@ -19,7 +19,7 @@ var GraphicsMethodEditForm = React.createClass({
         this.setState({"workingGraphicsMethod": p})
     },
     updateGraphicsMethod(attr, value) {
-        const p = $.extend({}, this.props.graphicsMethod);
+        const p = $.extend({}, this.state.workingGraphicsMethod);
         p[attr] = value;
         this.setState({"workingGraphicsMethod": p})
     },
