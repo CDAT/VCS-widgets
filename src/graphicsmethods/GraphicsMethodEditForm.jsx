@@ -5,7 +5,7 @@ import BoxfillEditor from './editors/BoxfillEditor'
 
 var GraphicsMethodEditForm = React.createClass({
     propTypes: {
-        colormaps: React.PropTypes.array,
+        colormaps: React.PropTypes.object,
         graphicsMethod: React.PropTypes.object,
         updateGraphicsMethod: React.PropTypes.func,
     },

@@ -18,7 +18,7 @@ var IsofillEditor = React.createClass({
     propTypes: {
         addLevel: React.PropTypes.func,
         changeState: React.PropTypes.func,
-        colormaps: React.PropTypes.array,
+        colormaps: React.PropTypes.object,
         gmProps: React.PropTypes.object,
         gmEditName: React.PropTypes.string,
         gmEditNameChange: React.PropTypes.func,

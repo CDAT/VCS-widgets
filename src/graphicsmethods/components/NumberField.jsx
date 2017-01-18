@@ -13,37 +13,43 @@ var NumberField = React.createClass({
         step: React.PropTypes.number,
         autoround: React.PropTypes.bool,
     },
-    getInitialState() {
+    getDefaultProps() {
         return {
             minValue: 0,
             maxValue: 100,
             step: 1,
-            autoround: false,
+            autoround: false
+        }
+    },
+    getInitialState() {
+        return {
             validationState: null,
         }
     },
     update(e) {
-        const new_val = parseInt(e.target.value);
+        const new_val = parseFloat(e.target.value);
         if (this.props.autoround) {
-            this.props.updatedValue(Math.floor(new_val / this.props.step));
+            this.props.updatedValue(Math.floor(new_val / this.props.step) * this.props.step);
         } else {
             this.props.updatedValue(new_val);
         }
     },
     validate(e) {
         const new_val = parseInt(e.target.value);
-        if (new_val < this.props.minValue) {
-            this.setState({"validationState": "error"});
-            return;
+        const new_state = {
+            "value": new_val,
+            "validationState": "success"
+        };
+        if (new_val < this.props.minValue || new_val > this.props.maxValue) {
+            new_state.validationState = "error";
         }
-        if (new_val > this.props.maxValue) {
-            this.setState({"validationState": "error"});
-            return;
-        }
-        this.setState({"validationState": "success"});
+        this.setState(new_state);
     },
     render() {
-        const {minValue, step, maxValue, value, label, controlId} = this.props;
+        let {minValue, step, maxValue, value, label, controlId} = this.props;
+        if (this.state.value !== undefined) {
+            value = this.state.value;
+        }
         let help = '';
         if (this.state.validationState === "warning" || this.state.validationState === "error") {
             help = <HelpBlock>Value must be between {minValue} and {maxValue}</HelpBlock>
@@ -51,7 +57,7 @@ var NumberField = React.createClass({
         return (
             <FormGroup controlId="{controlId}">
                 <ControlLabel>{label}</ControlLabel>
-                <FormControl componentClass="number" step={step} max={maxValue} min={minValue}
+                <FormControl type="number" step={step} max={maxValue} min={minValue}
                              onChange={this.validate} onBlur={this.update} value={value} />
                 {help}
             </FormGroup>

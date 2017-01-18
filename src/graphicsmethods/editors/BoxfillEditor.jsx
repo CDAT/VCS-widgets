@@ -15,7 +15,7 @@ import EditName from '../fields/EditName'
 
 var BoxfillEditor = React.createClass({
     propTypes: {
-        colormaps: React.PropTypes.array,
+        colormaps: React.PropTypes.object,
         graphicsMethod: React.PropTypes.object,
         updateGraphicsMethod: React.PropTypes.func,
     },
@@ -35,7 +35,9 @@ var BoxfillEditor = React.createClass({
                     <div className='row'>
                         <div className='col-md-12'>
                             <Missing updateGraphicsMethod={this.props.updateGraphicsMethod}
-                                     missing={this.props.graphicsMethod.missing} />
+                                     missing={this.props.graphicsMethod.missing}
+                                     colormap={this.props.colormaps[this.props.graphicsMethod.colormap || "default"]}
+                                />
                             <Exts updateGraphicsMethod={this.props.updateGraphicsMethod}
                                 ext1={this.props.graphicsMethod['ext_1']}
                                 ext2={this.props.graphicsMethod['ext_2']}

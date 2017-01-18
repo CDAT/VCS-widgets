@@ -5,7 +5,7 @@ var ColormapField = React.createClass({
     propTypes: {
         colormap: React.PropTypes.string,
         updateGraphicsMethod: React.PropTypes.func,
-        colormaps: React.PropTypes.array
+        colormaps: React.PropTypes.object
     },
     handleChange(e) {
         const cmap = e.target.value;
@@ -20,7 +20,7 @@ var ColormapField = React.createClass({
             <FormGroup controlId="colormap">
                 <ControlLabel>Colormap:</ControlLabel>
                 <FormControl onChange={this.handleChange} componentClass="select" value={this.props.colormap}>
-                    {this.props.colormaps.map((cmap, index) => {
+                    {Object.keys(this.props.colormaps).map((cmap, index) => {
                         return <option key={index} value={cmap}>{cmap}</option>
                     })}
                 </FormControl>
