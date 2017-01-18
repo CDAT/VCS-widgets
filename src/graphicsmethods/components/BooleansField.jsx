@@ -36,7 +36,7 @@ var BooleansField = React.createClass({
     update(e) {
         const new_value = e.target.checked;
         const value_dict = this.currentValue();
-        value_dict[e.target.value] = e.target.new_value;
+        value_dict[e.target.value] = new_value;
         this.props.updatedValue(value_dict);
     },
     render() {

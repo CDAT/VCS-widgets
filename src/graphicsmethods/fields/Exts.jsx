@@ -22,7 +22,10 @@ var Exts = React.createClass({
             return "Draws an extension arrow on " + side + " side (values " + where + " level)"
         }
         return (
-            <BooleansField updatedValue={this.update} labels={["Extend before first value", "Extend after last value"]} options={["ext_1", "ext_2"]} value={{"ext_1": this.props.ext1, "ext_2": this.props.ext2}} inline />
+            <div>
+                <label>Extensions</label>
+                <BooleansField updatedValue={this.update} labels={["Extend before first value", "Extend after last value"]} options={["ext_1", "ext_2"]} value={{"ext_1": this.props.ext1, "ext_2": this.props.ext2}} inline />
+            </div>
         );
     }
 });
