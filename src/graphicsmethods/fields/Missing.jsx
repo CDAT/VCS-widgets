@@ -33,7 +33,7 @@ var Missing = React.createClass({
         const update = this.props.updateGraphicsMethod;
         return (
             <div>
-                <ColorField color={this.props.missing} colormap={this.props.colormap} colorChanged={(c) => { update("missing", c); }} label="Missing Data Color:" />
+                <ColorField inline controlId="missing-color" color={this.props.missing} colormap={this.props.colormap} colorChanged={(c) => { update("missing", c); }} label="Missing Data Color:" />
                 <Usage id="missing-usage"
                     usage="Color to use for values masked out of your data." />
             </div>

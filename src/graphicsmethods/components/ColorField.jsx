@@ -47,12 +47,18 @@ var ColorField = React.createClass({
         colormap: React.PropTypes.array,
         label: React.PropTypes.string,
         controlId: React.PropTypes.string,
-        colorChanged: React.PropTypes.func
+        colorChanged: React.PropTypes.func,
+        inline: React.PropTypes.bool
     },
     getInitialState() {
         return {
             showModal: false,
             workingColor: getRGBA(this.props.color, this.props.colormap)
+        }
+    },
+    getDefaultProps() {
+        return {
+            inline: false
         }
     },
     openColorPicker(e) {
@@ -76,8 +82,11 @@ var ColorField = React.createClass({
         const self = this;
         const color = this.state.workingColor;
         const cmap = this.props.colormap.map((c) => { return vcsToRGB.apply(this, c)} );
+        const style = {
+            display: this.props.inline ? "inline-block" : "block"
+        }
         return (
-            <FormGroup controlId="{this.props.controlId}">
+            <FormGroup style={style} controlId={this.props.controlId}>
                 <ControlLabel style={{marginRight: '1em'}}>{this.props.label}</ControlLabel>
                 <ColorButton color={getRGBA(this.props.color, this.props.colormap)} action={this.openColorPicker} />
                 <Modal show={this.state.showModal} onHide={(e) => {this.setState({"showModal": false})}}>
