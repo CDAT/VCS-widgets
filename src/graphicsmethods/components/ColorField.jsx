@@ -53,7 +53,8 @@ var ColorField = React.createClass({
     getInitialState() {
         return {
             showModal: false,
-            workingColor: getRGBA(this.props.color, this.props.colormap)
+            workingColor: getRGBA(this.props.color, this.props.colormap),
+            colorValue: this.props.color,
         }
     },
     getDefaultProps() {
@@ -72,11 +73,20 @@ var ColorField = React.createClass({
         });
     },
     updateColor(c) {
-        this.setState({"workingColor": c});
+        let workingColor = c;
+        if (typeof c === "number") {
+            workingColor = getRGBA(c, this.props.colormap)
+        }
+        this.setState({workingColor: workingColor, colorValue: c});
     },
     finalizeColor() {
         this.setState({"showModal": false});
-        this.props.colorChanged(rgbToVCS.apply(this, this.state.workingColor));
+        if (this.state.workingColor === this.state.colorValue) {
+            this.props.colorChanged(rgbToVCS.apply(this, this.state.workingColor));
+        } else {
+            // there's a color index in colorValue
+            this.props.colorChanged(this.state.colorValue);
+        }
     },
     render() {
         const self = this;

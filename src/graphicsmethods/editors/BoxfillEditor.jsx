@@ -47,12 +47,19 @@ var BoxfillEditor = React.createClass({
                                     : 'hide'}/>
                         </div>
                     </div>
-                    <div className='row'>
-                        <div className='col-md-12'>
-                            <Legend updateGraphicsMethod={this.props.updateGraphicsMethod}
-                                legend={this.props.graphicsMethod['legend']}
-                                className='col-md-12'/>
-                        </div>
+                </div>
+                <div className='row'>
+                    <div className='col-md-12'>
+                        <ColormapField updateGraphicsMethod={this.props.updateGraphicsMethod}
+                            colormap={this.props.graphicsMethod['colormap'] === null ? "default" : this.props.graphicsMethod['colormap']}
+                            colormaps={this.props.colormaps} />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-md-12'>
+                        <LegendEditor updateGraphicsMethod={this.props.updateGraphicsMethod}
+                            legend={this.props.graphicsMethod['legend']}
+                            className='col-md-12'/>
                     </div>
                 </div>
                 <div className={
@@ -69,32 +76,6 @@ var BoxfillEditor = React.createClass({
                         <ColorOneTwo updateGraphicsMethod={this.props.changeState}
                             color1={this.props.graphicsMethod['color_1']}
                             color2={this.props.graphicsMethod['color_2']} />
-                    </div>
-                </div>
-                <div className={
-                    this.props.graphicsMethod['boxfill_type'] === 'custom'
-                    ? 'col-md-12'
-                    : 'hide'}>
-                    <h4>Custom Settings</h4>
-                    <div className='col-md-12'>
-                        <Levels updateGraphicsMethod={this.props.changeState}
-                            levels={this.props.graphicsMethod['levels']}
-                            addLevel={this.props.addLevel}
-                            removeLevel={this.props.removeLevel} />
-                    </div>
-                    <div className='col-md-12'>
-                        <FillareaFields updateGraphicsMethod={this.props.updateGraphicsMethod}
-                            colors={this.props.graphicsMethod['fillareacolors']}
-                            style={this.props.graphicsMethod['fillareastyle']}
-                            indices={this.props.graphicsMethod['fillareaindices']}
-                            opacity={this.props.graphicsMethod['fillareaopacity']} />
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col-md-12'>
-                        <ColormapField updateGraphicsMethod={this.props.updateGraphicsMethod}
-                            colormap={this.props.graphicsMethod['colormap'] === null ? "default" : this.props.graphicsMethod['colormap']}
-                            colormaps={this.props.colormaps} />
                     </div>
                 </div>
                 <div className='row'>

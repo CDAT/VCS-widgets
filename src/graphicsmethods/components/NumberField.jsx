@@ -12,13 +12,15 @@ var NumberField = React.createClass({
         controlId: React.PropTypes.string,
         step: React.PropTypes.number,
         autoround: React.PropTypes.bool,
+        placeholder: React.PropTypes.string,
     },
     getDefaultProps() {
         return {
             minValue: 0,
             maxValue: 100,
             step: 1,
-            autoround: false
+            autoround: false,
+            placeholder: ""
         }
     },
     getInitialState() {
@@ -46,7 +48,7 @@ var NumberField = React.createClass({
         this.setState(new_state);
     },
     render() {
-        let {minValue, step, maxValue, value, label, controlId} = this.props;
+        let {minValue, step, maxValue, value, label, controlId, placeholder} = this.props;
         if (this.state.value !== undefined) {
             value = this.state.value;
         }
@@ -57,7 +59,7 @@ var NumberField = React.createClass({
         return (
             <FormGroup controlId="{controlId}">
                 <ControlLabel>{label}</ControlLabel>
-                <FormControl type="number" step={step} max={maxValue} min={minValue}
+                <FormControl type="number" step={step} max={maxValue} min={minValue} placeholder={placeholder}
                              onChange={this.validate} onBlur={this.update} value={value} />
                 {help}
             </FormGroup>

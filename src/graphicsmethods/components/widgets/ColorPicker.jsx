@@ -27,7 +27,7 @@ var ColorPicker = React.createClass({
                     <ColorSwatch color={curColor} />
                     <ColorBars color={curColor} colorUpdated={this.props.updateCurrentColor} />
                 </div>
-                <ColorTable colors={this.props.colormap} colorSelected={ (ind) => { this.props.updateCurrentColor(this.props.colormap[ind]); } } />
+                <ColorTable colors={this.props.colormap} colorSelected={ (ind) => { this.props.updateCurrentColor(ind); } } />
             </div>
         );
     }

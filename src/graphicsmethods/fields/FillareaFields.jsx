@@ -1,96 +1,87 @@
-import React from 'react'
-import Usage from '../../Usage'
+import React from 'react';
+import Usage from '../../Usage';
+import LegendFill from '../components/LegendFill';
+import NumberField from '../components/NumberField';
+import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
-function validate(type, value) {
-    switch(type) {
-        case 'fillareaindices':
-            break;
-        case 'fillareaopacity':
-            break;
-        case 'fillareacolors':
-            break;
-        case 'fillareafields':
-            break;
+
+function Level(props) {
+    if (typeof props.value === "number") {
+        return <NumberField key={props.key} controlId={"level_" + props.key} label="Level: " step={null} value={props.value} />
+    } else {
+        return <FormGroup controlId={"level_" + props.key} 
     }
 }
+
+
 var FillareaFields = React.createClass({
     propTypes: {
-        handleChange: React.PropTypes.func,
-        defaultValue: React.PropTypes.string,
-        className: React.PropTypes.string,
-        colors: React.PropTypes.array,
-        style: React.PropTypes.string,
-        indices: React.PropTypes.array,
-        opacity: React.PropTypes.array
+        updateGraphicsMethod: React.PropTypes.func,
+        level: React.PropTypes.array,
+        color: React.PropTypes.array,
+        opacity: React.PropTypes.array,
+        pattern: React.PropTypes.array,
+        fillStyle: React.PropTypes.string,
+        ext1: React.PropTypes.bool,
+        ext2: React.PropTypes.bool
     },
     getInitialState() {
+        return this.normalizedArray(this.props)
+    },
+    normalizedArrays(arrays) {
+        // Normalizes the length of each array
+        let {level, opacity, color, pattern} = arrays;
+        let ext1 = this.props.ext1, ext2 = this.props.ext2;
+
+        if (ext1) {
+            level.unshift("-1e20");
+        }
+
+        if (ext2) {
+            level.push("1e20");
+        }
+
+        // Pad opacity, colors, and indices out to appropriate length
+        if (color.length < level.length - 1) {
+            let last_color = color[color.length - 1];
+            if (typeof last_color === "number") {
+                // Stretch between last_color and 255
+                const step = Math.round((255 - last_color) / (level.length - 1 - color.length));
+                while (color.length < level.length - 1) {
+                    last_color += step;
+                    color.push(last_color);
+                }
+            } else {
+                // Just duplicate the last color, there's no way to know what they want.
+                while (color.length < level.length - 1) {
+                    color.push(last_color);
+                }
+            }
+        }
+
+        while (opacity.length < level.length - 1) {
+            // We'll just default to using the opacity value of the color
+            opacity.push(null);
+        }
+
+        while (pattern.length < level.length - 1) {
+            pattern.length.push(0);
+        }
+
         return {
-            colors: [],
-            style: '',
-            indices: [],
-            opacity: []
+            color,
+            pattern,
+            level,
+            opacity
         }
     },
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            colors: nextProps.colors,
-            style: nextProps.style,
-            indices: nextProps.indices,
-            opacity: nextProps.opacity
-        })
-    },
-    handleBlur(event) {
-        // add data validation step
-        this.props.handleChange(event);
+        this.setState(this.normalizedArrays(nextProps));
     },
     render(){
-        let colors_usage = "Level color index values. Index colors range from 0 to 255.\n"+
-                           "Use explicit indices, i.e.: 16, 32, 48, 64, 80\n"+
-                           "OR Use two indices to generate level range, i.e.: 16, 32"
         return (
-            <div id='fillarea-fields' className={this.props.className}>
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <h5>Ranges: </h5>
-                        <input type='text'
-                            name='fillareaopacity'
-                            value={this.state.opacity? this.state.opacity : []}
-                            onChange={(event)=> {this.setState({opacity:event.target.value})}}
-                            onBlur={this.handleBlur}/>
-                        <Usage usage={"Level ranges: (10,30,50) or ([10,20],[20,30],[30,50])"}/>
-                    </div>
-                    <div className='col-md-6'>
-                        <h5>Colors: </h5>
-                        <input type='text'
-                            name='fillareacolors'
-                            value={this.state.colors? this.state.colors : []}
-                            onChange={(event)=> {this.setState({colors:event.target.value})}}
-                            onBlur={this.handleBlur}/>
-                        <Usage usage={colors_usage}/>
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <h5>Patterns: </h5>
-                        <input type='text'
-                            name='fillareaindices'
-                            value={this.state.indices? this.state.indices : []}
-                            onChange={(event)=> {this.setState({indices:event.target.value})}}
-                            onBlur={this.handleBlur}/>
-                        <Usage usage="Level pattern index values. Index range 0 to 18."/>
-                    </div>
-                    <div className='col-md-6'>
-                        <h5>Type: </h5>
-                        <select name='fillareastyle'
-                            value={this.state.style ?this.state.style :'solid'}
-                            onChange={this.props.handleChange}
-                            className='form-control'>
-                            <option value='solid'>solid</option>
-                            <option value='hatch'>hatch</option>
-                            <option value='pattern'>pattern</option>
-                        </select>
-                    </div>
-                </div>
+            <div>
+
             </div>
         );
     }

@@ -3,8 +3,14 @@ import Usage from '../../Usage'
 
 var Legend = React.createClass({
     propTypes: {
-        handleChange: React.PropTypes.func,
-        legend: React.PropTypes.string,
+        updateGraphicsMethod: React.PropTypes.func,
+        labels: React.PropTypes.object,
+        levels: React.PropTypes.array,
+        colors: React.PropTypes.array,
+        opacities: React.PropTypes.array,
+        patterns: React.PropTypes.array,
+        fillStyle: React.PropTypes.string,
+        showFill: React.PropTypes.bool,
         className: React.PropTypes.string
     },
     getInitialState() {
