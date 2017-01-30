@@ -57,8 +57,10 @@ var BoxfillEditor = React.createClass({
                 </div>
                 <div className='row'>
                     <div className='col-md-12'>
-                        <LegendEditor updateGraphicsMethod={this.props.updateGraphicsMethod}
-                            legend={this.props.graphicsMethod['legend']}
+                        <FillareaFields updateGraphicsMethod={this.props.updateGraphicsMethod}
+                            level={this.props.graphicsMethod.levels} color={this.props.graphicsMethod.fillareacolors}
+                            pattern={this.props.fillareaindices} opacity={this.props.graphicsMethod.fillareaopacity}
+                            fillStyle={this.props.fillareastyle} ext1={this.props.graphicsMethod.ext_1} ext2={this.props.graphicsMethod.ext_2}
                             className='col-md-12'/>
                     </div>
                 </div>

@@ -7,9 +7,15 @@ import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 function Level(props) {
     if (typeof props.value === "number") {
-        return <NumberField key={props.key} controlId={"level_" + props.key} label="Level: " step={null} value={props.value} />
+        return <NumberField controlId={"level_" + props.ind} label="Level: " step={null} value={props.value} />;
     } else {
-        return <FormGroup controlId={"level_" + props.key} 
+        // Extensions
+        return (
+            <FormGroup controlId={"level_" + props.ind}>
+                <ControlLabel>Level (legend extension):</ControlLabel>
+                <FormControl disabled value={props.value.charAt(0) === "-" ? "-Infinity" : "Infinity"} />
+            </FormGroup>
+        );
     }
 }
 
@@ -26,12 +32,30 @@ var FillareaFields = React.createClass({
         ext2: React.PropTypes.bool
     },
     getInitialState() {
-        return this.normalizedArray(this.props)
+        return this.normalizedArrays(this.props)
     },
     normalizedArrays(arrays) {
         // Normalizes the length of each array
         let {level, opacity, color, pattern} = arrays;
-        let ext1 = this.props.ext1, ext2 = this.props.ext2;
+        if (level === null) {
+            level = [];
+        }
+        if (opacity === null) {
+            opacity = [100];
+        }
+        if (color === null) {
+            color = [0];
+        }
+        if (pattern == null) {
+            pattern = [0];
+        }
+        // Make sure we're using new arrays in the state
+        level = level.slice();
+        opacity = opacity.slice();
+        color = color.slice();
+        pattern = pattern.slice();
+
+        let ext1 = arrays.ext1, ext2 = arrays.ext2;
 
         if (ext1) {
             level.unshift("-1e20");
@@ -65,7 +89,7 @@ var FillareaFields = React.createClass({
         }
 
         while (pattern.length < level.length - 1) {
-            pattern.length.push(0);
+            pattern.push(0);
         }
 
         return {
@@ -79,9 +103,10 @@ var FillareaFields = React.createClass({
         this.setState(this.normalizedArrays(nextProps));
     },
     render(){
+        console.log(this.state.level);
         return (
             <div>
-
+                {this.state.level.map((v, i) => <Level value={v} key={i} ind={i} />)}
             </div>
         );
     }
