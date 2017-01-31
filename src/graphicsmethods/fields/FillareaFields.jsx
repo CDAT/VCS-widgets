@@ -1,23 +1,9 @@
 import React from 'react';
 import Usage from '../../Usage';
 import LegendFill from '../components/LegendFill';
+import LevelField from '../components/LevelField';
 import NumberField from '../components/NumberField';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
-
-
-function Level(props) {
-    if (typeof props.value === "number") {
-        return <NumberField controlId={"level_" + props.ind}  maxValue={null} minValue={null} label="Level: " updatedValue={props.onChange} step={null} value={props.value} />;
-    } else {
-        // Extensions
-        return (
-            <FormGroup controlId={"level_" + props.ind}>
-                <ControlLabel>Level (legend extension):</ControlLabel>
-                <FormControl disabled value={props.value.charAt(0) === "-" ? "-Infinity" : "Infinity"} />
-            </FormGroup>
-        );
-    }
-}
 
 
 var FillareaFields = React.createClass({
@@ -141,9 +127,35 @@ var FillareaFields = React.createClass({
         levs = levs.slice(start, end);
         this.props.updateGraphicsMethod("levels", levs);
     },
+    addLevel(index) {
+        let levs = this.state.level.slice();
+        let val = levs[index];
+        let start = 0;
+        let end = levs.length + 1;
+        if (this.props.ext1) {
+            val = levs[index + 1];
+            start += 1;
+        }
+        if (this.props.ext2) {
+            end -= 1;
+        }
+        levs.splice(index, 0, val);
+        levs = levs.slice(start, end);
+        this.props.updateGraphicsMethod("levels", levs);
+    },
     render(){
         const self = this;
-        const levels = this.state.level.map((v, i) => <Level value={v} onChange={(l) => {self.updateLevel(i, l);}} key={"lev_" + i} ind={i} />);
+        const levels = this.state.level.map((v, i) => {
+            let addLevel = () => {
+                self.addLevel(i);
+            }
+            if (i === this.state.level.length - 1) {
+                addLevel = undefined;
+            }
+            return (
+                <LevelField value={v} onChange={(l) => {self.updateLevel(i, l);}} addLevel={addLevel} key={"lev_" + i} ind={i} />
+            );
+        });
         const fills = [];
         for (let i = 0; i < this.state.color.length; i++) {
             fills.push(<LegendFill key={"fill_" + i} title={i + ""} updateFill={(fill) => { self.updateFill(i, fill); }} colormap={this.props.colormap} color={this.state.color[i]} opacity={this.state.opacity[i]} pattern={this.state.pattern[i]} />)
