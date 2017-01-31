@@ -2,7 +2,7 @@ import React from 'react';
 import Usage from '../../Usage';
 import ColorButton from '../components/widgets/ColorButton';
 import ColorTable from '../components/widgets/ColorTable';
-import {Overlay, Popover} from 'react-bootstrap';
+import {ControlLabel, FormGroup, Overlay, Popover} from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 
 
@@ -48,12 +48,18 @@ var ColorOneTwo = React.createClass({
                         }} />
                     </Popover>
                 </Overlay>
-                <ColorButton ref={(b) => { this.color_1 = b; }}
-                             color={colors[this.props.color1]}
-                             action={(e) => { self.setState({"colorTarget": this.color_1, showColormap: true}) }} />
-                <ColorButton ref={(b) => { this.color_2 = b; }}
-                             color={colors[this.props.color2]}
-                             action={(e) => { self.setState({"colorTarget": this.color_2, showColormap: true}) }} />
+                <FormGroup controlId="color1">
+                    <ControlLabel>First Color</ControlLabel>
+                    <ColorButton ref={(b) => { this.color_1 = b; }}
+                                 color={colors[this.props.color1]}
+                                 action={(e) => { self.setState({"colorTarget": this.color_1, showColormap: true}) }} />
+                </FormGroup>
+                <FormGroup controlId="color2">
+                    <ControlLabel>Last Color</ControlLabel>
+                    <ColorButton ref={(b) => { this.color_2 = b; }}
+                                 color={colors[this.props.color2]}
+                                 action={(e) => { self.setState({"colorTarget": this.color_2, showColormap: true}) }} />
+                </FormGroup>
             </div>
         );
     }
