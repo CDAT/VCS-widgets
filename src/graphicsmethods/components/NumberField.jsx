@@ -47,7 +47,10 @@ var NumberField = React.createClass({
             "value": new_val,
             "validationState": "success"
         };
-        if (new_val < this.props.minValue || new_val > this.props.maxValue) {
+        if (this.props.minValue !== null && new_val < this.props.minValue) {
+            new_state.validationState = "error";
+        }
+        if (this.props.maxValue !== null && new_val > this.props.maxValue) {
             new_state.validationState = "error";
         }
         this.setState(new_state);
