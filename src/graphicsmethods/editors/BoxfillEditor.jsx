@@ -5,7 +5,6 @@ import ColorOneTwo from '../fields/ColorOneTwo'
 import DatawcCoordinates from '../fields/DatawcCoordinates'
 import Exts from '../fields/Exts'
 import TicsAndLabels from '../fields/TicsAndLabels'
-import Levels from '../fields/Levels'
 import FillareaFields from '../fields/FillareaFields'
 import LevelOneTwo from '../fields/LevelOneTwo'
 import Missing from '../fields/Missing'
@@ -22,30 +21,17 @@ var BoxfillEditor = React.createClass({
     render() {
         return (
             <div className="container-fluid">
-                <div className='col-md-12'>
-                    <EditName name={this.props.graphicsMethod.name}
+                <div className='row'>
+                    <div className="col-md-12">
+                        <EditName name={this.props.graphicsMethod.name}
                               updateGraphicsMethod={this.props.updateGraphicsMethod}/>
+                    </div>
                 </div>
-                <div className='col-md-12'>
+                <div className='row'>
                     <h4>Boxfill Settings</h4>
                     <div className='col-md-12'>
                         <BoxfillType updateGraphicsMethod={this.props.updateGraphicsMethod}
                                      type={this.props.graphicsMethod.boxfill_type}/>
-                    </div>
-                    <div className='row'>
-                        <div className='col-md-12'>
-                            <Missing updateGraphicsMethod={this.props.updateGraphicsMethod}
-                                     missing={this.props.graphicsMethod.missing}
-                                     colormap={this.props.colormaps[this.props.graphicsMethod.colormap || "default"]}
-                                />
-                            <Exts updateGraphicsMethod={this.props.updateGraphicsMethod}
-                                ext1={this.props.graphicsMethod['ext_1']}
-                                ext2={this.props.graphicsMethod['ext_2']}
-                                className={
-                                    this.props.graphicsMethod['boxfill_type'] !== 'custom'
-                                    ? 'col-md-3'
-                                    : 'hide'}/>
-                        </div>
                     </div>
                 </div>
                 <div className='row'>
@@ -55,8 +41,23 @@ var BoxfillEditor = React.createClass({
                             colormaps={this.props.colormaps} />
                     </div>
                 </div>
+                <div className='row'>
+                    <div className='col-md-12'>
+                        <Missing updateGraphicsMethod={this.props.updateGraphicsMethod}
+                                 missing={this.props.graphicsMethod.missing}
+                                 colormap={this.props.colormaps[this.props.graphicsMethod.colormap || "default"]}
+                            />
+                        <Exts updateGraphicsMethod={this.props.updateGraphicsMethod}
+                            ext1={this.props.graphicsMethod['ext_1']}
+                            ext2={this.props.graphicsMethod['ext_2']}
+                            className={
+                                this.props.graphicsMethod['boxfill_type'] !== 'custom'
+                                ? 'col-md-3'
+                                : 'hide'}/>
+                    </div>
+                </div>
                 <div className={
-                    this.props.graphicsMethod['boxfill_type'] !== 'custom'
+                    this.props.graphicsMethod['boxfill_type'] === 'custom'
                     ? 'row'
                     : 'hide'} >
                     <div className='col-md-12'>
@@ -69,18 +70,20 @@ var BoxfillEditor = React.createClass({
                     </div>
                 </div>
                 <div className={
-                    this.props.graphicsMethod['boxfill_type'] === 'custom'
+                    this.props.graphicsMethod['boxfill_type'] !== 'custom'
                     ? 'row'
                     : 'hide'}>
                     <div className="col-md-6">
-                        <LevelOneTwo updateGraphicsMethod={this.props.changeState}
+                        <LevelOneTwo updateGraphicsMethod={this.props.updateGraphicsMethod}
                             level1={this.props.graphicsMethod['level_1']}
                             level2={this.props.graphicsMethod['level_2']} />
                     </div>
                     <div className="col-md-6">
-                        <ColorOneTwo updateGraphicsMethod={this.props.changeState}
+                        <ColorOneTwo updateGraphicsMethod={this.props.updateGraphicsMethod}
                             color1={this.props.graphicsMethod['color_1']}
-                            color2={this.props.graphicsMethod['color_2']} />
+                            color2={this.props.graphicsMethod['color_2']}
+                            colormap={this.props.colormaps[this.props.graphicsMethod.colormap || 'default']}
+                        />
                     </div>
                 </div>
                 <div className='row'>
