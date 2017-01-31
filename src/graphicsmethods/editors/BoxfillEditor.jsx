@@ -55,7 +55,10 @@ var BoxfillEditor = React.createClass({
                             colormaps={this.props.colormaps} />
                     </div>
                 </div>
-                <div className='row'>
+                <div className={
+                    this.props.graphicsMethod['boxfill_type'] !== 'custom'
+                    ? 'row'
+                    : 'hide'} >
                     <div className='col-md-12'>
                         <FillareaFields updateGraphicsMethod={this.props.updateGraphicsMethod}
                             level={this.props.graphicsMethod.levels} color={this.props.graphicsMethod.fillareacolors}
@@ -66,10 +69,9 @@ var BoxfillEditor = React.createClass({
                     </div>
                 </div>
                 <div className={
-                    this.props.graphicsMethod['boxfill_type'] !== 'custom'
-                    ? 'col-md-12'
+                    this.props.graphicsMethod['boxfill_type'] === 'custom'
+                    ? 'row'
                     : 'hide'}>
-                    <h4>Linear and Log Settings</h4>
                     <div className="col-md-6">
                         <LevelOneTwo updateGraphicsMethod={this.props.changeState}
                             level1={this.props.graphicsMethod['level_1']}
