@@ -9,45 +9,14 @@ var GraphicsMethodEditForm = React.createClass({
         graphicsMethod: React.PropTypes.object,
         updateGraphicsMethod: React.PropTypes.func,
     },
-    getInitialState() {
-        return {
-            "workingGraphicsMethod": $.extend({}, this.props.graphicsMethod)
-        }
-    },
-    componentWillReceiveProps(nextProps) {
-        const p = $.extend({}, nextProps.graphicsMethod);
-        this.setState({"workingGraphicsMethod": p})
-    },
-    updateGraphicsMethod(attr, value) {
-        const p = $.extend({}, this.state.workingGraphicsMethod);
-        p[attr] = value;
-        this.setState({"workingGraphicsMethod": p})
-    },
-    commitEdits() {
-        this.props.updateGraphicsMethod(this.state.workingGraphicsMethod);
-    },
     render() {
+        // We'll switch based on GM type here
         return(
-            <div>
-                <div className='modal-body'>
-                    <BoxfillEditor addLevel={this.addLevel}
-                        colormaps={this.props.colormaps}
-                        graphicsMethod={this.state.workingGraphicsMethod}
-                        updateGraphicsMethod={this.updateGraphicsMethod}
-                    />
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button"
-                        className="btn btn-primary"
-                        id="commit-gm-edits"
-                        onClick={this.commitEdits}
-                        data-dismiss="modal">
-                        Save changes
-                    </button>
-                </div>
-            </div>
-        )
+            <BoxfillEditor addLevel={this.addLevel}
+                           colormaps={this.props.colormaps}
+                           graphicsMethod={this.props.graphicsMethod}
+                           updateGraphicsMethod={this.props.updateGraphicsMethod} />
+        );
     }
 });
 
