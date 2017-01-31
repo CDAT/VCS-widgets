@@ -7,7 +7,7 @@ import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 function Level(props) {
     if (typeof props.value === "number") {
-        return <NumberField controlId={"level_" + props.ind} label="Level: " step={null} value={props.value} />;
+        return <NumberField controlId={"level_" + props.ind}  maxValue={null} minValue={null} label="Level: " updatedValue={props.onChange} step={null} value={props.value} />;
     } else {
         // Extensions
         return (
@@ -23,6 +23,7 @@ function Level(props) {
 var FillareaFields = React.createClass({
     propTypes: {
         updateGraphicsMethod: React.PropTypes.func,
+        colormap: React.PropTypes.array,
         level: React.PropTypes.array,
         color: React.PropTypes.array,
         opacity: React.PropTypes.array,
@@ -70,7 +71,7 @@ var FillareaFields = React.createClass({
             let last_color = color[color.length - 1];
             if (typeof last_color === "number") {
                 // Stretch between last_color and 255
-                const step = Math.round((255 - last_color) / (level.length - 1 - color.length));
+                const step = Math.floor((255 - last_color) / (level.length - 1 - color.length));
                 while (color.length < level.length - 1) {
                     last_color += step;
                     color.push(last_color);
@@ -102,11 +103,63 @@ var FillareaFields = React.createClass({
     componentWillReceiveProps(nextProps) {
         this.setState(this.normalizedArrays(nextProps));
     },
+    updateFill(index, fillSettings) {
+        let {color, pattern, opacity} = this.state;
+        color = color.slice();
+        pattern = pattern.slice();
+        opacity = opacity.slice();
+
+        if (fillSettings.color !== color[index]) {
+            color[index] = fillSettings.color;
+            this.props.updateGraphicsMethod("fillareacolors", color);
+            return;
+        }
+        if (fillSettings.pattern !== pattern[index]) {
+            pattern[index] = fillSettings.pattern;
+            this.props.updateGraphicsMethod("fillareaindices", pattern);
+            return;
+        }
+        if (fillSettings.opacity !== pattern[index]) {
+            opacity[index] = fillSettings.opacity;
+            this.props.updateGraphicsMethod("fillareaopacity", opacity);
+            return;
+        }
+    },
+    updateLevel(index, level) {
+        let levs = this.state.level.slice();
+        // Update the value
+        levs[index] = level;
+        // Now slice off extensions as needed
+        let start = 0;
+        let end = this.state.level.length;
+        if (this.props.ext1) {
+            start = 1;
+        }
+        if (this.props.ext2) {
+            end -= 1;
+        }
+        levs = levs.slice(start, end);
+        this.props.updateGraphicsMethod("levels", levs);
+    },
     render(){
-        console.log(this.state.level);
+        const self = this;
+        const levels = this.state.level.map((v, i) => <Level value={v} onChange={(l) => {self.updateLevel(i, l);}} key={"lev_" + i} ind={i} />);
+        const fills = [];
+        for (let i = 0; i < this.state.color.length; i++) {
+            fills.push(<LegendFill key={"fill_" + i} title={i + ""} updateFill={(fill) => { self.updateFill(i, fill); }} colormap={this.props.colormap} color={this.state.color[i]} opacity={this.state.opacity[i]} pattern={this.state.pattern[i]} />)
+        }
+
+        const components = [];
+        for (let i = 0; i < levels.length; i++) {
+            components.push(levels[i]);
+            if (i <= levels.length - 1) {
+                components.push(fills[i]);
+            }
+        }
+
         return (
             <div>
-                {this.state.level.map((v, i) => <Level value={v} key={i} ind={i} />)}
+                {components}
             </div>
         );
     }

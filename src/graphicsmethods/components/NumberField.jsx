@@ -28,12 +28,17 @@ var NumberField = React.createClass({
             validationState: null,
         }
     },
+    componentWillReceiveProps(nextProps) {
+        this.setState({"value": nextProps.value, "validationState": null});
+    },
     update(e) {
         const new_val = parseFloat(e.target.value);
-        if (this.props.autoround) {
-            this.props.updatedValue(Math.floor(new_val / this.props.step) * this.props.step);
-        } else {
-            this.props.updatedValue(new_val);
+        if (new_val !== this.props.value) {
+            if (this.props.autoround) {
+                this.props.updatedValue(Math.floor(new_val / this.props.step) * this.props.step);
+            } else {
+                this.props.updatedValue(new_val);
+            }
         }
     },
     validate(e) {
@@ -55,6 +60,9 @@ var NumberField = React.createClass({
         let help = '';
         if (this.state.validationState === "warning" || this.state.validationState === "error") {
             help = <HelpBlock>Value must be between {minValue} and {maxValue}</HelpBlock>
+        }
+        if (value === null) {
+            value = "";
         }
         return (
             <FormGroup controlId="{controlId}">

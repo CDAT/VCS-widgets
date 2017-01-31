@@ -14,7 +14,7 @@ function verify(value) {
 }
 var LevelOneTwo = React.createClass({
     propTypes: {
-        handleChange: React.PropTypes.func,
+        updateGraphicsMethod: React.PropTypes.func,
         level1: React.PropTypes.number,
         level2: React.PropTypes.number
     },
@@ -34,7 +34,7 @@ var LevelOneTwo = React.createClass({
         let property_name = event.target.name
         let value = verify(event.target.value);
         if (value === 0 || value) {
-            this.props.handleChange(property_name, value)
+            this.props.updateGraphicsMethod(property_name, value)
         } else {
             if (property_name === 'level_1') {
                 this.setState({
