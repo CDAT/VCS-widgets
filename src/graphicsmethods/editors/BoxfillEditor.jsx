@@ -92,12 +92,16 @@ var BoxfillEditor = React.createClass({
                             updateGraphicsMethod={this.props.updateGraphicsMethod} />
                     </div>
                 </div>
-                <DatawcCoordinates updateGraphicsMethod={this.props.updateGraphicsMethod}
-                    x1={this.props.graphicsMethod['datawc_x1']}
-                    x2={this.props.graphicsMethod['datawc_x2']}
-                    y1={this.props.graphicsMethod['datawc_y1']}
-                    y2={this.props.graphicsMethod['datawc_y2']}
-                />
+                <div className="row">
+                    <div className="col-md-12">
+                        <DatawcCoordinates updateGraphicsMethod={this.props.updateGraphicsMethod}
+                                           x1={this.props.graphicsMethod['datawc_x1']}
+                                           x2={this.props.graphicsMethod['datawc_x2']}
+                                           y1={this.props.graphicsMethod['datawc_y1']}
+                                           y2={this.props.graphicsMethod['datawc_y2']}
+                        />
+                    </div>
+                </div>
             </div>
         )
     }
