@@ -138,7 +138,7 @@ var NumberField = React.createClass({
         }
         return (
             <FormGroup style={style} controlId={controlId}>
-                <ControlLabel>{label}</ControlLabel>
+                {label ? <ControlLabel>{label}</ControlLabel> : ''}
                 <FormControl placeholder={placeholder} onChange={this.validate} onBlur={this.update} value={value} />
                 {help}
             </FormGroup>

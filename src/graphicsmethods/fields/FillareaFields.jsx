@@ -145,6 +145,32 @@ var FillareaFields = React.createClass({
         levs = levs.slice(start, end);
         this.props.updateGraphicsMethod("levels", levs);
     },
+    removeLevel(index) {
+        let levs = this.state.level.slice();
+        // Prevent them from deleting all of the levels
+        let no_ext_len = levs.length;
+        if (this.props.ext1) {
+            no_ext_len -= 1;
+        }
+        if (this.props.ext2) {
+            no_ext_len -= 1;
+        }
+        if (no_ext_len == 1) {
+            return;
+        }
+        let start = 0;
+        levs.splice(index, 1);
+        let end = levs.length; // it would be +1, but we're removing an element.
+        // Remove the target
+        if (this.props.ext1) {
+            start += 1;
+        }
+        if (this.props.ext2) {
+            end -= 1;
+        }
+        levs = levs.slice(start, end);
+        this.props.updateGraphicsMethod("levels", levs);
+    },
     setFillStyle(s) {
         let style = null;
         if (s.hatch) {
@@ -160,7 +186,7 @@ var FillareaFields = React.createClass({
         const self = this;
         const levels = this.state.level.map((v, i) => {
             return (
-                <LevelField value={v} onChange={(l) => {self.updateLevel(i, l);}} key={"lev_" + i} ind={i} />
+                <LevelField value={v} onRemove={() => { self.removeLevel(i); }} onChange={(l) => {self.updateLevel(i, l);}} key={"lev_" + i} ind={i} />
             );
         });
         const fills = [];
