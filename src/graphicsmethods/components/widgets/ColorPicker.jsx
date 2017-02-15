@@ -22,12 +22,14 @@ var ColorPicker = React.createClass({
         }
         const curColor = this.props.color;
         return (
-            <div style={mainStyle}>
-                <div style={subStyle}>
+            <div style={mainStyle} className="row">
+                <div style={subStyle} className="col-sm-4">
                     <ColorSwatch color={curColor} />
                     <ColorBars color={curColor} colorUpdated={this.props.updateCurrentColor} />
                 </div>
-                <ColorTable colors={this.props.colormap} colorSelected={ (ind) => { this.props.updateCurrentColor(ind); } } />
+                <div className="col-sm-8">
+                    <ColorTable colors={this.props.colormap} colorSelected={ (ind) => { this.props.updateCurrentColor(ind); } } />
+                </div>
             </div>
         );
     }

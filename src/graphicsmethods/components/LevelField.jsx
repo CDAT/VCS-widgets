@@ -15,14 +15,9 @@ export default class LevelField extends Component {
                 </FormGroup>
             );
         }
-        let button = "";
-        if (this.props.addLevel) {
-            button = <Button onClick={(e) => {this.props.addLevel()}}><span className="glyphicon glyphicon-plus"></span></Button>;
-        }
         return (
             <div>
                 {editor}
-                {button}
             </div>
         );
     }

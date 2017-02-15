@@ -1,19 +1,19 @@
 import React from 'react'
+import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
+
+// TODO: Add dynamic projections, make configurable.
 
 var Projection = React.createClass({
     propTypes: {
-        handleChange: React.PropTypes.func,
+        updateGraphicsMethod: React.PropTypes.func,
         projection: React.PropTypes.string
     },
     render() {
+        const self = this;
         return (
-            <div id='projection-selector'>
-                <h5>Projection: </h5>
-                <select name="projection"
-                    value={this.props.projection}
-                    onChange={this.props.handleChange}
-                    className="form-control">
-
+            <FormGroup controlId="projection">
+                <ControlLabel>Projection</ControlLabel>
+                <FormControl value={this.props.projection} componentClass="select" onChange={(e) => {self.props.updateGraphicsMethod("projection", e.target.value);} }>
                     <option value='default'>Default</option>
                     <option value='lambert'>Lambert</option>
                     <option value='linear'>Linear</option>
@@ -23,8 +23,8 @@ var Projection = React.createClass({
                     <option value='polar'>Polar</option>
                     <option value='polyconic'>Polyconic</option>
                     <option value='robinson'>Robinson</option>
-                </select>
-            </div>
+                </FormControl>
+            </FormGroup>
         );
     }
 });

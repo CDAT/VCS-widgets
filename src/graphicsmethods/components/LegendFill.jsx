@@ -64,18 +64,24 @@ export default React.createClass({
     },
     render() {
         return (
-            <div>
-                <ColorField label="Fill Color: " colorChanged={this.colorChanged} inline color={this.props.color} colormap={this.props.colormap} controlId={"fillcolor_" + this.props.title} />
-                <NumberField updatedValue={this.opacityChanged} label="Opacity: " controlId={"fillopacity_" + this.props.title}
+            <div className="row">
+                <div className="col-sm-2">
+                    <ColorField label="Fill Color: " colorChanged={this.colorChanged} inline color={this.props.color} colormap={this.props.colormap} controlId={"fillcolor_" + this.props.title} />
+                </div>
+                <div className="col-sm-4">
+                    <NumberField inline updatedValue={this.opacityChanged} label="Opacity: " controlId={"fillopacity_" + this.props.title}
                              step={.1} value={this.props.opacity} placeholder={"" + this.state.opacity} />
-                <FormGroup controlId={"fillpattern_" + this.props.title}>
-                    <ControlLabel>Pattern</ControlLabel>
-                    <FormControl onChange={this.patternChanged} componentClass="select" placeholder="Pattern">
-                        {patterns.map((k) => {
-                            return <option key={k} checked={k == this.props.pattern} value={k}>{patterns[k]}</option>
-                        })}
-                    </FormControl>
-                </FormGroup>
+                </div>
+                <div className="col-sm-4">
+                    <FormGroup style={{'display': 'inline-block'}} controlId={"fillpattern_" + this.props.title}>
+                        <ControlLabel>Pattern</ControlLabel>
+                        <FormControl onChange={this.patternChanged} componentClass="select" placeholder="Pattern">
+                            {patterns.map((k, index) => {
+                                return <option key={k} checked={index == this.props.pattern} value={index}>{k}</option>
+                            })}
+                        </FormControl>
+                    </FormGroup>
+                </div>
             </div>
         );
     }

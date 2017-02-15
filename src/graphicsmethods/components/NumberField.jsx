@@ -16,8 +16,31 @@ function parseNum(v) {
     return v;
 }
 
-const numregexp = /-?\d*\.?\d*(e\d+)?/
+function shouldExponentiate(v) {
+    if (isNaN(v) || !isFinite(v)) {
+        return false;
+    }
+    let absval = Math.abs(v);
+    if (absval >= 1e10) {
+        return true;
+    }
+    if (v === 0) {
+        // will break logarithms; also, not needed.
+        return false;
+    }
 
+    let frac = absval - Math.floor(absval)
+    if (frac === 0) {
+        return false;
+    }
+    if (Math.log10(frac) < -10) {
+        return true;
+    }
+
+    return false;
+}
+
+const numregexp = /-?\d*\.\d*(e\d+)?/
 
 
 var NumberField = React.createClass({
@@ -31,10 +54,12 @@ var NumberField = React.createClass({
         step: React.PropTypes.number,
         autoround: React.PropTypes.bool,
         placeholder: React.PropTypes.string,
-        exponential: React.PropTypes.bool
+        exponential: React.PropTypes.bool,
+        inline: React.PropTypes.bool
     },
     getDefaultProps() {
         return {
+            inline: false,
             minValue: 0,
             maxValue: 100,
             step: 1,
@@ -102,14 +127,17 @@ var NumberField = React.createClass({
             value = "";
         }
         const numval = parseNum(value);
-        if (this.props.exponential && !isNaN(numval) && isFinite(numval) && (Math.abs(numval) >= 1e5 || Math.abs(numval) <= 1e-5)) {
+        if (this.props.exponential && shouldExponentiate(numval)) {
             let unsigned = Math.abs(numval);
             let exp = Math.floor(Math.log10(unsigned));
             let rest = numval / Math.pow(10, exp);
             value = rest + "e" + exp;
         }
+        const style = {
+            display: this.props.inline ? "inline-block" : "block"
+        }
         return (
-            <FormGroup controlId={controlId}>
+            <FormGroup style={style} controlId={controlId}>
                 <ControlLabel>{label}</ControlLabel>
                 <FormControl placeholder={placeholder} onChange={this.validate} onBlur={this.update} value={value} />
                 {help}

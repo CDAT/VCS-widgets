@@ -3,7 +3,8 @@ import Usage from '../../Usage';
 import LegendFill from '../components/LegendFill';
 import LevelField from '../components/LevelField';
 import NumberField from '../components/NumberField';
-import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import BooleansField from '../components/BooleansField';
+import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
 
 var FillareaFields = React.createClass({
@@ -135,6 +136,7 @@ var FillareaFields = React.createClass({
         if (this.props.ext1) {
             val = levs[index + 1];
             start += 1;
+            index = Math.max(start, index);
         }
         if (this.props.ext2) {
             end -= 1;
@@ -143,17 +145,22 @@ var FillareaFields = React.createClass({
         levs = levs.slice(start, end);
         this.props.updateGraphicsMethod("levels", levs);
     },
+    setFillStyle(s) {
+        let style = null;
+        if (s.hatch) {
+            style = "hatch";
+        } else if (s.pattern) {
+            style = "pattern";
+        } else {
+            style = "solid";
+        }
+        this.props.updateGraphicsMethod('fillareastyle', style);
+    },
     render(){
         const self = this;
         const levels = this.state.level.map((v, i) => {
-            let addLevel = () => {
-                self.addLevel(i);
-            }
-            if (i === this.state.level.length - 1) {
-                addLevel = undefined;
-            }
             return (
-                <LevelField value={v} onChange={(l) => {self.updateLevel(i, l);}} addLevel={addLevel} key={"lev_" + i} ind={i} />
+                <LevelField value={v} onChange={(l) => {self.updateLevel(i, l);}} key={"lev_" + i} ind={i} />
             );
         });
         const fills = [];
@@ -167,11 +174,27 @@ var FillareaFields = React.createClass({
             if (i <= levels.length - 1) {
                 components.push(fills[i]);
             }
+            if (i < levels.length) {
+                if (i == levels.length - 1 && this.props.ext2) {
+                    continue;
+                }
+                let addLevel = () => {
+                    self.addLevel(i);
+                }
+                components.push(<Button key={"add_" + i} onClick={(e) => {addLevel()}}><span className="glyphicon glyphicon-plus"></span></Button>);
+            }
         }
 
         return (
             <div>
-                {components}
+                <FormGroup>
+                    <ControlLabel>Fill Style:</ControlLabel>
+                    <BooleansField controlId='fill_style' updatedValue={this.setFillStyle} labels={["Solid", "Patterned", "Hatched"]} options={["solid", "pattern", "hatch"]} value={this.props.fillStyle} inline multiple={false} />
+                </FormGroup>
+                <ControlLabel>Levels:</ControlLabel>
+                <div style={{"border": "1px solid #ccc", "padding": ".5em", "borderRadius": "5px"}}>
+                    {components}
+                </div>
             </div>
         );
     }

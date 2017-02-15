@@ -36,8 +36,8 @@ var ColorOneTwo = React.createClass({
         });
         return (
             <div>
-                <Overlay show={this.state.showColormap} target={() => { ReactDOM.findDOMNode(this.state.colorTarget); }} container={this}>
-                    <Popover title="Choose Color" id="color_picker" position="right">
+                <Overlay rootClose show={this.state.showColormap} onHide={(e) => { this.setState({showColormap: false}); }} target={() => { ReactDOM.findDOMNode(this.state.colorTarget); }} container={ReactDOM.findDOMNode(this.state.colorTarget)}>
+                    <Popover id="color_one_two_colortable" style={{'minWidth': '512px'}}>
                         <ColorTable colors={colors} colorSelected={(v) => {
                             if (self.state.colorTarget === this.color_1) {
                                 self.updateColor1(v);
@@ -49,16 +49,28 @@ var ColorOneTwo = React.createClass({
                     </Popover>
                 </Overlay>
                 <FormGroup controlId="color1">
-                    <ControlLabel>First Color</ControlLabel>
+                    <ControlLabel>First Color: </ControlLabel>
                     <ColorButton ref={(b) => { this.color_1 = b; }}
                                  color={colors[this.props.color1]}
-                                 action={(e) => { self.setState({"colorTarget": this.color_1, showColormap: true}) }} />
+                                 action={(e) => {
+                                    if (self.state.colorTarget == self.color_1) {
+                                        self.setState({showColormap: !self.state.showColormap});
+                                    } else {
+                                        self.setState({colorTarget: self.color_1, showColormap: true});
+                                    }
+                                  }} />
                 </FormGroup>
                 <FormGroup controlId="color2">
-                    <ControlLabel>Last Color</ControlLabel>
+                    <ControlLabel>Last Color: </ControlLabel>
                     <ColorButton ref={(b) => { this.color_2 = b; }}
                                  color={colors[this.props.color2]}
-                                 action={(e) => { self.setState({"colorTarget": this.color_2, showColormap: true}) }} />
+                                 action={(e) => {
+                                    if (self.state.colorTarget == self.color_2) {
+                                        self.setState({showColormap: !self.state.showColormap});
+                                    } else {
+                                        self.setState({colorTarget: self.color_2, showColormap: true});
+                                    }
+                                  }} />
                 </FormGroup>
             </div>
         );

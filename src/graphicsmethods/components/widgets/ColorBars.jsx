@@ -23,8 +23,7 @@ var ColorBars = React.createClass({
         const style = {
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-around",
-            minWidth: "250px"
+            justifyContent: "space-around"
         }
         return (
             <div style={style}>

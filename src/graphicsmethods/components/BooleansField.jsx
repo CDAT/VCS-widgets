@@ -42,6 +42,7 @@ var BooleansField = React.createClass({
         } else {
             let d = this.props.options.reduce((prev, cur) => {
                 prev[cur] = cur === e.target.value;
+                return prev;
             }, {});
             this.props.updatedValue(d);
         }
@@ -53,9 +54,9 @@ var BooleansField = React.createClass({
             <FormGroup controlId="{this.props.controlId}">
                 { this.props.options.map((o, ind) => {
                     if (self.props.multiple) {
-                        return <Checkbox key={ind} name={self.props.controlId} value={o} checked={value_dict[o]} onChange={self.update}> {self.props.labels[ind]} </Checkbox>
+                        return <Checkbox inline={this.props.inline} key={ind} name={self.props.controlId} value={o} checked={value_dict[o]} onChange={self.update}> {self.props.labels[ind]} </Checkbox>
                     } else {
-                        return <Radio key={ind} name={self.props.controlId} value={o} checked={value_dict[o]} onChange={self.update}> {self.props.labels[ind]} </Radio>
+                        return <Radio inline={this.props.inline} key={ind} name={self.props.controlId} value={o} checked={value_dict[o]} onChange={self.update}> {self.props.labels[ind]} </Radio>
                     }
                 })}
             </FormGroup>

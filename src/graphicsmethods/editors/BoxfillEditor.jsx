@@ -64,7 +64,7 @@ var BoxfillEditor = React.createClass({
                         <FillareaFields updateGraphicsMethod={this.props.updateGraphicsMethod}
                             level={this.props.graphicsMethod.levels} color={this.props.graphicsMethod.fillareacolors}
                             pattern={this.props.fillareaindices} opacity={this.props.graphicsMethod.fillareaopacity}
-                            fillStyle={this.props.fillareastyle} ext1={this.props.graphicsMethod.ext_1} ext2={this.props.graphicsMethod.ext_2}
+                            fillStyle={this.props.graphicsMethod.fillareastyle} ext1={this.props.graphicsMethod.ext_1} ext2={this.props.graphicsMethod.ext_2}
                             colormap={this.props.colormaps[this.props.graphicsMethod.colormap || "default"]}
                             className='col-md-12'/>
                     </div>
