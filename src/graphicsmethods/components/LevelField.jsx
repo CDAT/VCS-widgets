@@ -23,18 +23,17 @@ export default class LevelField extends Component {
                     </div>
                 </div>
             );
-        } else {
+        } else if (typeof this.props.value === "string") {
             editor = (
                 <FormGroup controlId={"level_" + this.props.ind}>
                     <ControlLabel>Level (legend extension):</ControlLabel>
                     <FormControl disabled value={this.props.value.charAt(0) === "-" ? "-Infinity" : "Infinity"} />
                 </FormGroup>
             );
+        } else if (Array.isArray(this.props.value)) {
+            // It's a discontinuous level
+            console.log("No support for discontinuous levels at this point.");
         }
-        return (
-            <div>
-                {editor}
-            </div>
-        );
+        return editor;
     }
 }

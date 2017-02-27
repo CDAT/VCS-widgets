@@ -32,10 +32,22 @@ var DatawcCoordinates = React.createClass({
         const self = this;
         return (
             <div>
-                <NumberField controlId="datawc_x1" label="X Axis Start:" minValue={null} maxValue={null} step={null} value={this.props.x1} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_x1", v)}} />
-                <NumberField controlId="datawc_x2" label="X Axis End:" minValue={null} maxValue={null} step={null} value={this.props.x2} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_x2", v)}} />
-                <NumberField controlId="datawc_y1" label="Y Axis Start:" minValue={null} maxValue={null} step={null} value={this.props.y1} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_y1", v)}} />
-                <NumberField controlId="datawc_y2" label="Y Axis End:" minValue={null} maxValue={null} step={null} value={this.props.y2} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_y2", v)}} />
+                <div className="row">
+                    <div className="col-sm-6">
+                        <NumberField controlId="datawc_x1" label="X Axis Start:" minValue={null} maxValue={null} step={null} value={this.props.x1} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_x1", v)}} />
+                    </div>
+                    <div className="col-sm-6">
+                        <NumberField controlId="datawc_y1" label="Y Axis Start:" minValue={null} maxValue={null} step={null} value={this.props.y1} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_y1", v)}} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-6">
+                        <NumberField controlId="datawc_x2" label="X Axis End:" minValue={null} maxValue={null} step={null} value={this.props.x2} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_x2", v)}} />
+                    </div>
+                    <div className="col-sm-6">
+                        <NumberField controlId="datawc_y2" label="Y Axis End:" minValue={null} maxValue={null} step={null} value={this.props.y2} updatedValue={(v) => {self.props.updateGraphicsMethod("datawc_y2", v)}} />
+                    </div>
+                </div>
             </div>
         );
     }

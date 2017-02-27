@@ -1,6 +1,7 @@
-import React from 'react'
-import $ from 'jquery'
-import BoxfillEditor from './editors/BoxfillEditor'
+import React from 'react';
+import $ from 'jquery';
+import BoxfillEditor from './editors/BoxfillEditor';
+import IsofillEditor from './editors/IsofillEditor';
 
 
 var GraphicsMethodEditForm = React.createClass({
@@ -11,12 +12,19 @@ var GraphicsMethodEditForm = React.createClass({
     },
     render() {
         // We'll switch based on GM type here
-        return(
-            <BoxfillEditor addLevel={this.addLevel}
-                           colormaps={this.props.colormaps}
-                           graphicsMethod={this.props.graphicsMethod}
-                           updateGraphicsMethod={this.props.updateGraphicsMethod} />
-        );
+        switch(this.props.graphicsMethod.g_name) {
+          case 'Gfb':
+            return(
+                <BoxfillEditor colormaps={this.props.colormaps}
+                               graphicsMethod={this.props.graphicsMethod}
+                               updateGraphicsMethod={this.props.updateGraphicsMethod} />
+            );
+          case 'Gfi':
+            return (<IsofillEditor colormaps={this.props.colormaps}
+                               graphicsMethod={this.props.graphicsMethod}
+                               updateGraphicsMethod={this.props.updateGraphicsMethod} />
+            );
+        }
     }
 });
 

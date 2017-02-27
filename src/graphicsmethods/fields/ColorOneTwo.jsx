@@ -36,7 +36,7 @@ var ColorOneTwo = React.createClass({
         });
         return (
             <div>
-                <Overlay rootClose show={this.state.showColormap} onHide={(e) => { this.setState({showColormap: false}); }} target={() => { ReactDOM.findDOMNode(this.state.colorTarget); }} container={ReactDOM.findDOMNode(this.state.colorTarget)}>
+                <Overlay rootClose show={this.state.showColormap} onHide={(e) => { this.setState({showColormap: false}); }} target={() => { ReactDOM.findDOMNode(this.state.colorTarget); }} container={this}>
                     <Popover id="color_one_two_colortable" style={{'minWidth': '512px'}}>
                         <ColorTable colors={colors} colorSelected={(v) => {
                             if (self.state.colorTarget === this.color_1) {
