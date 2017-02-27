@@ -10,6 +10,7 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 var FillareaFields = React.createClass({
     propTypes: {
         updateGraphicsMethod: React.PropTypes.func,
+        bulkUpdate: React.PropTypes.func,
         colormap: React.PropTypes.array,
         level: React.PropTypes.array,
         color: React.PropTypes.array,
@@ -90,27 +91,35 @@ var FillareaFields = React.createClass({
     componentWillReceiveProps(nextProps) {
         this.setState(this.normalizedArrays(nextProps));
     },
+    sync(arrays) {
+        let {color, pattern, opacity, level} = arrays;
+        this.props.bulkUpdate({
+            'fillareacolors': color,
+            'fillareaindices': pattern,
+            'fillareaopacity': opacity,
+            'levels': level
+        });
+    },
     updateFill(index, fillSettings) {
         let {color, pattern, opacity} = this.state;
         color = color.slice();
         pattern = pattern.slice();
         opacity = opacity.slice();
-
-        if (fillSettings.color !== color[index]) {
-            color[index] = fillSettings.color;
-            this.props.updateGraphicsMethod("fillareacolors", color);
-            return;
+        color[index] = fillSettings.color;
+        pattern[index] = fillSettings.pattern;
+        opacity[index] = fillSettings.opacity;
+        let start = 0;
+        let end = this.state.level.length;
+        if (this.props.ext1) {
+            start += 1;
         }
-        if (fillSettings.pattern !== pattern[index]) {
-            pattern[index] = fillSettings.pattern;
-            this.props.updateGraphicsMethod("fillareaindices", pattern);
-            return;
+        if (this.props.ext2) {
+            end -= 1;
         }
-        if (fillSettings.opacity !== pattern[index]) {
-            opacity[index] = fillSettings.opacity;
-            this.props.updateGraphicsMethod("fillareaopacity", opacity);
-            return;
-        }
+        const levs = this.state.level.slice(start, end);
+        this.sync({
+            color, pattern, opacity, 'level': levs
+        });
     },
     updateLevel(index, level) {
         let levs = this.state.level.slice();
@@ -143,7 +152,12 @@ var FillareaFields = React.createClass({
         }
         levs.splice(index, 0, val);
         levs = levs.slice(start, end);
-        this.props.updateGraphicsMethod("levels", levs);
+
+        const base_arrays = $.extend({}, this.state);
+        base_arrays.level = levs;
+        const normalized = this.normalizedArrays(base_arrays);
+        normalized.level = levs;
+        this.sync(normalized);
     },
     removeLevel(index) {
         let levs = this.state.level.slice();
@@ -169,7 +183,11 @@ var FillareaFields = React.createClass({
             end -= 1;
         }
         levs = levs.slice(start, end);
-        this.props.updateGraphicsMethod("levels", levs);
+        const base_arrays = $.extend({}, this.state);
+        base_arrays.level = levs;
+        const normalized = this.normalizedArrays(base_arrays);
+        normalized.level = levs;
+        this.sync(normalized);
     },
     setFillStyle(s) {
         let style = null;
