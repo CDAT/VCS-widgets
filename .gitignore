@@ -4,6 +4,9 @@ logs
 npm-debug.log*
 .DS_Store
 dist/
+built/
+build/
+bin/
 
 # Runtime data
 pids
@@ -40,3 +43,4 @@ jspm_packages
 
 # PyChram
 .idea/
+lib/
