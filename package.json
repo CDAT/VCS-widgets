@@ -4,7 +4,7 @@
   "description": "Widgets for manipulating VCS JSON",
   "main": "built/index.js",
   "scripts": {
-    "preinstall": "babel ./src --out-dir ./built --source-maps",
+    "prepublish": "babel ./src --out-dir ./built --source-maps",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached --content-base src/"
   },
   "repository": {
