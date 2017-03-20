@@ -16,7 +16,7 @@ var _ColorField = require('./ColorField');
 
 var _ColorField2 = _interopRequireDefault(_ColorField);
 
-var _NumberField = require('./NumberField');
+var _NumberField = require('../../common/NumberField');
 
 var _NumberField2 = _interopRequireDefault(_NumberField);
 

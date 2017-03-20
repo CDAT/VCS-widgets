@@ -12,7 +12,7 @@ var _Usage = require('../../Usage');
 
 var _Usage2 = _interopRequireDefault(_Usage);
 
-var _NumberField = require('../components/NumberField');
+var _NumberField = require('../../common/NumberField');
 
 var _NumberField2 = _interopRequireDefault(_NumberField);
 

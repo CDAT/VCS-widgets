@@ -10,7 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NumberField = require('./NumberField');
+var _NumberField = require('../../common/NumberField');
 
 var _NumberField2 = _interopRequireDefault(_NumberField);
 

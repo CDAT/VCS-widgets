@@ -20,11 +20,11 @@ var _LevelField = require('../components/LevelField');
 
 var _LevelField2 = _interopRequireDefault(_LevelField);
 
-var _NumberField = require('../components/NumberField');
+var _NumberField = require('../../common/NumberField');
 
 var _NumberField2 = _interopRequireDefault(_NumberField);
 
-var _BooleansField = require('../components/BooleansField');
+var _BooleansField = require('../../common/BooleansField');
 
 var _BooleansField2 = _interopRequireDefault(_BooleansField);
 
