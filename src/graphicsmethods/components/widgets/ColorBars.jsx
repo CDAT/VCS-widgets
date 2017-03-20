@@ -1,5 +1,5 @@
 import React from 'react'
-import NumberField from '../NumberField'
+import NumberField from '../../../common/NumberField'
 
 
 var ColorBars = React.createClass({

@@ -1,6 +1,6 @@
 import React from 'react';
 import Usage from '../../Usage';
-import NumberField from '../components/NumberField';
+import NumberField from '../../common/NumberField';
 /* global $ */
 
 function validate(value, maximum) {

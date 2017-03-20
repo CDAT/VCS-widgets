@@ -1,6 +1,6 @@
 import React from 'react'
 import Usage from '../../Usage'
-import BooleansField from '../components/BooleansField'
+import BooleansField from '../../common/BooleansField'
 
 
 var Exts = React.createClass({

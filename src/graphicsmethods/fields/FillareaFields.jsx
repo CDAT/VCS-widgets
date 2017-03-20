@@ -2,8 +2,8 @@ import React from 'react';
 import Usage from '../../Usage';
 import LegendFill from '../components/LegendFill';
 import LevelField from '../components/LevelField';
-import NumberField from '../components/NumberField';
-import BooleansField from '../components/BooleansField';
+import NumberField from '../../common/NumberField';
+import BooleansField from '../../common/BooleansField';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
 

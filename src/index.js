@@ -1,6 +1,6 @@
 import GraphicsMethodEditForm from "./graphicsmethods"
-import BooleansField from "./graphicsmethods/components/BooleansField"
-import NumberField from "./graphicsmethods/components/NumberField"
+import BooleansField from "./common/BooleansField"
+import NumberField from "./common/NumberField"
 
 const widgets = {
     GMEdit: GraphicsMethodEditForm,
