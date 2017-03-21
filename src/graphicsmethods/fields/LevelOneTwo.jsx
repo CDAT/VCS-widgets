@@ -1,5 +1,5 @@
 import React from 'react'
-import NumberField from '../components/NumberField';
+import NumberField from '../../common/NumberField';
 
 
 /* global $ */

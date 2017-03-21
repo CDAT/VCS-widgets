@@ -1,7 +1,7 @@
 import React from 'react';
 import ColorProp from '../../validators/ColorProp';
 import ColorField from './ColorField';
-import NumberField from './NumberField';
+import NumberField from '../../common/NumberField';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 

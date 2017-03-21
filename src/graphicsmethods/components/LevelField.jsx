@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NumberField from './NumberField';
+import NumberField from '../../common/NumberField';
 import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 export default class LevelField extends Component {

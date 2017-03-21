@@ -12,7 +12,7 @@ var _Usage = require('../../Usage');
 
 var _Usage2 = _interopRequireDefault(_Usage);
 
-var _BooleansField = require('../components/BooleansField');
+var _BooleansField = require('../../common/BooleansField');
 
 var _BooleansField2 = _interopRequireDefault(_BooleansField);
 
