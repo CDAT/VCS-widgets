@@ -45,7 +45,6 @@ var TemplateEditForm = function (_Component) {
     _createClass(TemplateEditForm, [{
         key: 'handleSelect',
         value: function handleSelect(key) {
-            console.log(this);
             this.setState({ key: key });
         }
     }, {
@@ -53,7 +52,6 @@ var TemplateEditForm = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            console.log("render");
             return _react2.default.createElement(
                 'div',
                 null,
