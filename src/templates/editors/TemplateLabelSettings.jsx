@@ -30,13 +30,14 @@ var TemplateLabelSettings = React.createClass({
         const y = this.props.label.y;
         const priority = this.props.label.priority;
         const name = this.props.label.member;
-
+        const styles = {padding: "5px"};
+        
         return (
             <tr>
-                <th>{name}</th>
-                <td><input type="number" value={x} name="{name}_x" onChange={this.updateLabelValue("x")} /></td>
-                <td><input type="number" value={y} name="{name}_y" onChange={this.updateLabelValue("y")} /></td>
-                <td><input type="number" value={priority} name="{name}_priority" onChange={this.updateLabelValue("priority")} /></td>
+                <th style={styles}>{name}</th>
+                <td style={styles}><input type="number" value={x} name="{name}_x" onChange={this.updateLabelValue("x")} /></td>
+                <td style={styles}><input type="number" value={y} name="{name}_y" onChange={this.updateLabelValue("y")} /></td>
+                <td style={styles}><input type="number" value={priority} name="{name}_priority" onChange={this.updateLabelValue("priority")} /></td>
             </tr>
         );
     },
