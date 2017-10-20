@@ -55,17 +55,17 @@ var TemplateLabelSettings = _react2.default.createClass({
             _react2.default.createElement(
                 "td",
                 { style: styles },
-                _react2.default.createElement("input", { style: { width: 120 }, type: "number", step: "0.001", value: x, name: "{name}_x", onChange: this.updateLabelValue("x") })
+                _react2.default.createElement("input", { style: { width: 120 }, type: "number", step: "0.01", defaultValue: x, name: "{name}_x", onBlur: this.updateLabelValue("x") })
             ),
             _react2.default.createElement(
                 "td",
                 { style: styles },
-                _react2.default.createElement("input", { style: { width: 120 }, type: "number", step: "0.001", value: y, name: "{name}_y", onChange: this.updateLabelValue("y") })
+                _react2.default.createElement("input", { style: { width: 120 }, type: "number", step: "0.01", defaultValue: y, name: "{name}_y", onBlur: this.updateLabelValue("y") })
             ),
             _react2.default.createElement(
                 "td",
                 { style: styles },
-                _react2.default.createElement("input", { style: { width: 120 }, type: "number", value: priority, name: "{name}_priority", onChange: this.updateLabelValue("priority") })
+                _react2.default.createElement("input", { style: { width: 120 }, type: "number", defaultValue: priority, name: "{name}_priority", onBlur: this.updateLabelValue("priority") })
             )
         );
     }

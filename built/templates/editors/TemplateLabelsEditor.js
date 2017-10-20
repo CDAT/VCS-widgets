@@ -50,17 +50,17 @@ var TemplateLabelsEditor = _react2.default.createClass({
                     _react2.default.createElement('th', null),
                     _react2.default.createElement(
                         'td',
-                        { className: 'text-center' },
+                        { style: { width: 120 }, className: 'text-center' },
                         'X'
                     ),
                     _react2.default.createElement(
                         'td',
-                        { className: 'text-center' },
+                        { style: { width: 120 }, className: 'text-center' },
                         'Y'
                     ),
                     _react2.default.createElement(
                         'td',
-                        { className: 'text-center' },
+                        { style: { width: 120 }, className: 'text-center' },
                         'Priority'
                     )
                 ),
