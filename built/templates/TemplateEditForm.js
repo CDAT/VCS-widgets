@@ -52,7 +52,6 @@ var TemplateEditForm = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var tabContentStyles = { maxHeight: 500, overflowY: "scroll", overflowX: "hidden" };
             return _react2.default.createElement(
                 'div',
                 null,
@@ -71,7 +70,7 @@ var TemplateEditForm = function (_Component) {
                         { eventKey: 1, title: 'Labels' },
                         _react2.default.createElement(
                             'div',
-                            { style: tabContentStyles },
+                            { className: 'template-editor-tab-content' },
                             _react2.default.createElement(_TemplateLabelsEditor2.default, { template: this.props.template, updateTemplate: this.props.updateTemplate })
                         )
                     ),
@@ -80,7 +79,7 @@ var TemplateEditForm = function (_Component) {
                         { eventKey: 2, title: 'Axes' },
                         _react2.default.createElement(
                             'div',
-                            { style: tabContentStyles },
+                            { className: 'template-editor-tab-content' },
                             _react2.default.createElement(_TemplateAxisEditor2.default, { template: this.props.template, updateTemplate: this.props.updateTemplate })
                         )
                     )
