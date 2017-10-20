@@ -42,29 +42,30 @@ var TemplateLabelSettings = _react2.default.createClass({
         var y = this.props.label.y;
         var priority = this.props.label.priority;
         var name = this.props.label.member;
+        var styles = { padding: "5px" };
 
         return _react2.default.createElement(
             "tr",
             null,
             _react2.default.createElement(
                 "th",
-                null,
+                { style: styles },
                 name
             ),
             _react2.default.createElement(
                 "td",
-                null,
-                _react2.default.createElement("input", { type: "number", value: x, name: "{name}_x", onChange: this.updateLabelValue("x") })
+                { style: styles },
+                _react2.default.createElement("input", { style: { width: 120 }, type: "number", step: "0.001", value: x, name: "{name}_x", onChange: this.updateLabelValue("x") })
             ),
             _react2.default.createElement(
                 "td",
-                null,
-                _react2.default.createElement("input", { type: "number", value: y, name: "{name}_y", onChange: this.updateLabelValue("y") })
+                { style: styles },
+                _react2.default.createElement("input", { style: { width: 120 }, type: "number", step: "0.001", value: y, name: "{name}_y", onChange: this.updateLabelValue("y") })
             ),
             _react2.default.createElement(
                 "td",
-                null,
-                _react2.default.createElement("input", { type: "number", value: priority, name: "{name}_priority", onChange: this.updateLabelValue("priority") })
+                { style: styles },
+                _react2.default.createElement("input", { style: { width: 120 }, type: "number", value: priority, name: "{name}_priority", onChange: this.updateLabelValue("priority") })
             )
         );
     }

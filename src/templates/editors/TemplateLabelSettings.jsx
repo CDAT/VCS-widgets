@@ -35,9 +35,9 @@ var TemplateLabelSettings = React.createClass({
         return (
             <tr>
                 <th style={styles}>{name}</th>
-                <td style={styles}><input type="number" value={x} name="{name}_x" onChange={this.updateLabelValue("x")} /></td>
-                <td style={styles}><input type="number" value={y} name="{name}_y" onChange={this.updateLabelValue("y")} /></td>
-                <td style={styles}><input type="number" value={priority} name="{name}_priority" onChange={this.updateLabelValue("priority")} /></td>
+                <td style={styles}><input style={{width: 120}} type="number" step="0.001" value={x} name="{name}_x" onChange={this.updateLabelValue("x")}/></td>
+                <td style={styles}><input style={{width: 120}} type="number" step="0.001" value={y} name="{name}_y" onChange={this.updateLabelValue("y")} /></td>
+                <td style={styles}><input style={{width: 120}} type="number" value={priority} name="{name}_priority" onChange={this.updateLabelValue("priority")} /></td>
             </tr>
         );
     },

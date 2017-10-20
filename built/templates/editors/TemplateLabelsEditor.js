@@ -44,6 +44,26 @@ var TemplateLabelsEditor = _react2.default.createClass({
             _react2.default.createElement(
                 'tbody',
                 null,
+                _react2.default.createElement(
+                    'tr',
+                    null,
+                    _react2.default.createElement('th', null),
+                    _react2.default.createElement(
+                        'td',
+                        { className: 'text-center' },
+                        'X'
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        { className: 'text-center' },
+                        'Y'
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        { className: 'text-center' },
+                        'Priority'
+                    )
+                ),
                 labels.map(function (label_name) {
                     return _react2.default.createElement(_TemplateLabelSettings2.default, { key: label_name, label: template[label_name], update: self.updateTemplateAttribute(label_name) });
                 })
