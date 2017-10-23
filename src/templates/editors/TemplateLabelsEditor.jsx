@@ -27,6 +27,12 @@ var TemplateLabelsEditor = React.createClass({
         return (
             <table className="table">
                 <tbody>
+                    <tr>
+                        <th></th>
+                        <td style={{width: 120}} className="text-center">X</td>
+                        <td style={{width: 120}} className="text-center">Y</td>
+                        <td style={{width: 120}} className="text-center">Priority</td>
+                    </tr>
                 {labels.map((label_name) => {
                     return <TemplateLabelSettings key={label_name} label={template[label_name]} update={self.updateTemplateAttribute(label_name)} />
                 })}

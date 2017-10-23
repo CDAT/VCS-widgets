@@ -55,7 +55,11 @@ var TemplateEditForm = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement('img', { style: { maxWidth: "100%" }, src: this.props.templatePreview }),
+                _react2.default.createElement(
+                    'div',
+                    { style: { minHeight: "438px" } },
+                    _react2.default.createElement('img', { style: { maxWidth: "100%" }, src: this.props.templatePreview })
+                ),
                 _react2.default.createElement(
                     _reactBootstrap.Tabs,
                     { id: this.props.template.name, activeKey: this.state.key, onSelect: function onSelect(k) {
@@ -64,12 +68,20 @@ var TemplateEditForm = function (_Component) {
                     _react2.default.createElement(
                         _reactBootstrap.Tab,
                         { eventKey: 1, title: 'Labels' },
-                        _react2.default.createElement(_TemplateLabelsEditor2.default, { template: this.props.template, updateTemplate: this.props.updateTemplate })
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'template-editor-tab-content' },
+                            _react2.default.createElement(_TemplateLabelsEditor2.default, { template: this.props.template, updateTemplate: this.props.updateTemplate })
+                        )
                     ),
                     _react2.default.createElement(
                         _reactBootstrap.Tab,
                         { eventKey: 2, title: 'Axes' },
-                        _react2.default.createElement(_TemplateAxisEditor2.default, { template: this.props.template, updateTemplate: this.props.updateTemplate })
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'template-editor-tab-content' },
+                            _react2.default.createElement(_TemplateAxisEditor2.default, { template: this.props.template, updateTemplate: this.props.updateTemplate })
+                        )
                     )
                 )
             );
