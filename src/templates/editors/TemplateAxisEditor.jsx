@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import {Tabs, Tab} from 'react-bootstrap'
 import TemplateAxisSettings from './TemplateAxisSettings'
 
@@ -8,27 +9,31 @@ const x2 = ["xlabel2", "xtic2", "xmintic2"];
 const y1 = ["ylabel1", "ytic1", "ymintic1"];
 const y2 = ["ylabel2", "ytic2", "ymintic2"];
 
-var TemplateAxisEditor = React.createClass({
-    propTypes: {
-        template: React.PropTypes.object,
-        updateTemplate: React.PropTypes.func
-    },
+class TemplateAxisEditor extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            workingTemplate: $.extend({}, this.props.template)
+        }
+        this.updateTemplateAttribute = this.updateTemplateAttribute.bind(this)
+        this.handleSelect = this.handleSelect.bind(this)
+    }
+
     updateTemplateAttribute(attribute) {
         const self = this;
         return (key, value) => {
             self.props.updateTemplate(attribute, key, value);
         }
-    },
-    getInitialState() {
-        key: 1;
-        return {workingTemplate: $.extend({}, this.props.template)};
-    },
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState({workingTemplate: $.extend({}, nextProps.template)});
-    },
+    }
+
     handleSelect(key) {
         this.setState({key});
-    },
+    }
+
     render() {
         const template = this.state.workingTemplate;
         const self = this;
@@ -63,6 +68,11 @@ var TemplateAxisEditor = React.createClass({
             </div>
         );
     }
-})
+}
+
+TemplateAxisEditor.propTypes = { 
+    template: PropTypes.object,
+    updateTemplate: PropTypes.func
+}
 
 export default TemplateAxisEditor;

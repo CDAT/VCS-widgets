@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import Usage from '../../Usage'
 import BooleansField from '../../common/BooleansField'
 
 
-var Exts = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        ext1: React.PropTypes.bool,
-        ext2: React.PropTypes.bool,
-    },
+class Exts extends Component {
+    constructor(props){
+        super(props)
+        this.update = this.update.bind(this)
+    }
+    
     update(value_dict) {
         const {ext_1, ext_2} = value_dict;
         if (ext_1 !== this.props.ext1) {
@@ -16,7 +17,8 @@ var Exts = React.createClass({
         } else {
             this.props.updateGraphicsMethod("ext_2", ext_2);
         }
-    },
+    }
+
     render(){
         let usage = (side, where)=>{
             return "Draws an extension arrow on " + side + " side (values " + where + " level)"
@@ -28,6 +30,12 @@ var Exts = React.createClass({
             </div>
         );
     }
-});
+}
+
+Exts.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    ext1: PropTypes.bool,
+    ext2: PropTypes.bool,
+}
 
 export default Exts;

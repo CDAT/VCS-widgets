@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import Usage from '../../Usage'
 import ColorProp from '../../validators/ColorProp'
 import ColorField from '../components/ColorField'
@@ -22,13 +23,7 @@ function verify(value) {
 }
 
 
-var Missing = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        missing: ColorProp,
-        className: React.PropTypes.string,
-        colormap: React.PropTypes.array
-    },
+class Missing extends Component {
     render() {
         const update = this.props.updateGraphicsMethod;
         return (
@@ -39,6 +34,13 @@ var Missing = React.createClass({
             </div>
         );
     }
-});
+}
+
+Missing.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    missing: ColorProp,
+    className: PropTypes.string,
+    colormap: PropTypes.array
+}
 
 export default Missing;

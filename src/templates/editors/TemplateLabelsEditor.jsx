@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types';
 import TemplateLabelSettings from './TemplateLabelSettings';
 
 const labels = ["dataname", "title", "units", "mean", "min", "max", "file", "crdate", "crtime", "zname", "tname", "zvalue", "tvalue", "zunits", "tunits"]
 
 
-var TemplateLabelsEditor = React.createClass({
-    propTypes: {
-        template: React.PropTypes.object,
-        updateTemplate: React.PropTypes.func
-    },
+class TemplateLabelsEditor extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            workingTemplate: $.extend({}, this.props.template)
+        }
+        this.updateTemplateAttribute = this.updateTemplateAttribute.bind(this)
+    }
+    
     updateTemplateAttribute(attribute) {
         const self = this;
         return (key, value) => {
             self.props.updateTemplate(attribute, key, value);
         }
-    },
-    getInitialState() {
-        return {workingTemplate: $.extend({}, this.props.template)};
-    },
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState({workingTemplate: $.extend({}, nextProps.template)});
-    },
+    }
+
     render() {
         const template = this.state.workingTemplate;
         const self = this;
@@ -40,6 +44,11 @@ var TemplateLabelsEditor = React.createClass({
             </table>
         );
     }
-})
+}
+
+TemplateLabelsEditor.propTypes = { 
+    template: PropTypes.object,
+    updateTemplate: PropTypes.func
+}
 
 export default TemplateLabelsEditor;

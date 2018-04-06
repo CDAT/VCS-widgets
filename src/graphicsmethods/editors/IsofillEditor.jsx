@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import ColormapField from '../fields/ColormapField'
 import BoxfillType from '../fields/BoxfillType'
 import DatawcCoordinates from '../fields/DatawcCoordinates'
@@ -9,13 +10,7 @@ import Missing from '../fields/Missing'
 import Projection from '../fields/Projection'
 import EditName from '../fields/EditName'
 
-var IsofillEditor = React.createClass({
-    propTypes: {
-        colormaps: React.PropTypes.object,
-        graphicsMethod: React.PropTypes.object,
-        updateGraphicsMethod: React.PropTypes.func,
-        updateField: React.PropTypes.func,
-    },
+class IsofillEditor extends Component {
     render() {
         return (
             <div className="container-fluid">
@@ -77,6 +72,13 @@ var IsofillEditor = React.createClass({
             </div>
         )
     }
-});
+}
+
+IsofillEditor.propTypes = { 
+    colormaps: PropTypes.object,
+    graphicsMethod: PropTypes.object,
+    updateGraphicsMethod: PropTypes.func,
+    updateField: PropTypes.func,
+}
 
 export default IsofillEditor;

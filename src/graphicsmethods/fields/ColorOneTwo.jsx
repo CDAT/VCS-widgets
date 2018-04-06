@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types';
 import Usage from '../../Usage';
 import ColorButton from '../components/widgets/ColorButton';
 import ColorTable from '../components/widgets/ColorTable';
@@ -10,24 +11,24 @@ function usage(name, html_start='', trailer='', html_end='') {
     return html_start + name + " property must be an integer >= 0 and <=255. " + trailer + html_end
 }
 
-var ColorOneTwo = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        color1: React.PropTypes.number,
-        color2: React.PropTypes.number,
-        colormap: React.PropTypes.array
-    },
-    updateColor1(val) {
-        this.props.updateGraphicsMethod("color_1", val);
-    },
-    updateColor2(val) {
-        this.props.updateGraphicsMethod("color_2", val);
-    },
-    getInitialState() {
-        return {
+class ColorOneTwo extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
             showColormap: false
         }
-    },
+        this.updateColor1 = this.updateColor1.bind(this)
+        this.updateColor2 = this.updateColor2.bind(this)
+    }
+    
+    updateColor1(val) {
+        this.props.updateGraphicsMethod("color_1", val);
+    }
+
+    updateColor2(val) {
+        this.props.updateGraphicsMethod("color_2", val);
+    }
+    
     render(){
         const self = this;
         const colors = this.props.colormap.map((c) => {
@@ -75,6 +76,13 @@ var ColorOneTwo = React.createClass({
             </div>
         );
     }
-});
+}
+
+ColorOneTwo.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    color1: PropTypes.number,
+    color2: PropTypes.number,
+    colormap: PropTypes.array
+}
 
 export default ColorOneTwo;

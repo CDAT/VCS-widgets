@@ -1,13 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
 
 // TODO: Add dynamic projections, make configurable.
 
-var Projection = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        projection: React.PropTypes.string
-    },
+class Projection extends Component {
     render() {
         const self = this;
         return (
@@ -27,6 +24,11 @@ var Projection = React.createClass({
             </FormGroup>
         );
     }
-});
+}
+
+Projection.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    projection: PropTypes.string
+}
 
 export default Projection;

@@ -18,7 +18,6 @@ export default class TemplateEditForm extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <div style={{minHeight: "438px"}}>

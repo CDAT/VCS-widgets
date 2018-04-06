@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 
 
 function colorBrightness(red, green, blue) {
@@ -13,11 +14,7 @@ function compareBrightness(c1, c2) {
 }
 
 
-var ColorTable = React.createClass({
-    propTypes: {
-        colors: React.PropTypes.array,
-        colorSelected: React.PropTypes.func
-    },
+class ColorTable extends Component {
     render() {
         const self = this;
         return (
@@ -43,6 +40,11 @@ var ColorTable = React.createClass({
             </div>
         );
     }
-});
+}
+
+ColorTable.propTypes = { 
+    colors: PropTypes.array,
+    colorSelected: PropTypes.func
+}
 
 export default ColorTable;

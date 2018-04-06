@@ -1,26 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {Checkbox, Radio, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap'
 
 
-var BooleansField = React.createClass({
-    propTypes: {
-        labels: React.PropTypes.array,
-        value: React.PropTypes.oneOfType([
-                                          React.PropTypes.object,
-                                          React.PropTypes.string
-                                         ]),
-        options: React.PropTypes.array,
-        updatedValue: React.PropTypes.func,
-        inline: React.PropTypes.bool,
-        controlId: React.PropTypes.string,
-        multiple: React.PropTypes.bool,
-    },
-    getDefaultProps() {
-        return {
-            inline: false,
-            multiple: true,
-        }
-    },
+class BooleansField extends Component {
+    constructor(props){
+        super(props)
+        this.currentValue = this.currentValue.bind(this)
+        this.update = this.update.bind(this)
+    }
+        
     currentValue() {
         const value_dict = {};
         this.props.options.map((o) => {
@@ -32,7 +21,8 @@ var BooleansField = React.createClass({
             }
         });
         return value_dict;
-    },
+    }
+
     update(e) {
         const new_value = e.target.checked;
         if (this.props.multiple) {
@@ -46,7 +36,8 @@ var BooleansField = React.createClass({
             }, {});
             this.props.updatedValue(d);
         }
-    },
+    }
+
     render() {
         const self = this;
         const value_dict = this.currentValue();
@@ -62,6 +53,24 @@ var BooleansField = React.createClass({
             </FormGroup>
         );
     }
-});
+}
+
+BooleansField.propTypes = {
+    labels: PropTypes.array,
+    value: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string
+    ]),
+    options: PropTypes.array,
+    updatedValue: PropTypes.func,
+    inline: PropTypes.bool,
+    controlId: PropTypes.string,
+    multiple: PropTypes.bool,
+}
+
+BooleansField.defaultProps = {
+    inline: false,
+    multiple: true,
+}
 
 export default BooleansField;

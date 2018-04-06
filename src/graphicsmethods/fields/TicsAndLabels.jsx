@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 
 // TODO: Make a good UI for this feature. For now we're not doing anything with it.
 
@@ -6,23 +7,13 @@ import React from 'react'
 function validate(value) {
 
 }
-var TicsAndLabels = React.createClass({
-    propTypes: {
-        handleChange: React.PropTypes.func,
-        xmt1: React.PropTypes.string,
-        xmt2: React.PropTypes.string,
-        ymt1: React.PropTypes.string,
-        ymt2: React.PropTypes.string,
-        xtl1: React.PropTypes.string,
-        xtl2: React.PropTypes.string,
-        ytl1: React.PropTypes.string,
-        ytl2: React.PropTypes.string
-    },
+class TicsAndLabels extends Component {
     handleBlur(event) {
         let name = event.target.name;
         let value = validate(event.target.value);
 
-    },
+    }
+
     render(){
         var that = this.props.that;
         return (
@@ -81,6 +72,18 @@ var TicsAndLabels = React.createClass({
             </div>
         )
     }
-});
+}
+
+TicsAndLabels.propTypes = { 
+    handleChange: PropTypes.func,
+    xmt1: PropTypes.string,
+    xmt2: PropTypes.string,
+    ymt1: PropTypes.string,
+    ymt2: PropTypes.string,
+    xtl1: PropTypes.string,
+    xtl2: PropTypes.string,
+    ytl1: PropTypes.string,
+    ytl2: PropTypes.string
+}
 
 export default TicsAndLabels;

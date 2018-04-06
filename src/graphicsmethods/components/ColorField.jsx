@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import {FormGroup, ControlLabel, Modal, Button, ButtonToolbar} from 'react-bootstrap'
 import ColorProp from '../../validators/ColorProp'
 import ColorButton from './widgets/ColorButton'
@@ -41,44 +42,40 @@ function getRGBA(vcs_color, colormap) {
 }
 
 // Accepts a VCS color, converts to RGBA for internal manipulation, spits back out a VCS color
-var ColorField = React.createClass({
-    propTypes: {
-        color: ColorProp,
-        colormap: React.PropTypes.array,
-        label: React.PropTypes.string,
-        controlId: React.PropTypes.string,
-        colorChanged: React.PropTypes.func,
-        inline: React.PropTypes.bool
-    },
-    getInitialState() {
-        return {
+class ColorField extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
             showModal: false,
-            workingColor: getRGBA(this.props.color, this.props.colormap),
-            colorValue: this.props.color,
+            workingColor: getRGBA(props.color, props.colormap),
+            colorValue: props.color,
         }
-    },
-    getDefaultProps() {
-        return {
-            inline: false
-        }
-    },
+        this.openColorPicker = this.openColorPicker.bind(this)
+        this.closeColorPicker = this.closeColorPicker.bind(this)
+        this.updateColor = this.updateColor.bind(this)
+        this.finalizeColor = this.finalizeColor.bind(this)
+    }
+
     openColorPicker(e) {
         this.setState({"showModal": true});
-    },
+    }
+
     closeColorPicker(e) {
         // Reset the color and hide the modal
         this.setState({
             "workingColor": getRGBA(this.props.color, this.props.colormap),
             "showModal": false,
         });
-    },
+    }
+
     updateColor(c) {
         let workingColor = c;
         if (typeof c === "number") {
             workingColor = getRGBA(c, this.props.colormap)
         }
         this.setState({workingColor: workingColor, colorValue: c});
-    },
+    }
+
     finalizeColor() {
         this.setState({"showModal": false});
         if (this.state.workingColor === this.state.colorValue) {
@@ -87,9 +84,9 @@ var ColorField = React.createClass({
             // there's a color index in colorValue
             this.props.colorChanged(this.state.colorValue);
         }
-    },
+    }
+
     render() {
-        const self = this;
         const color = this.state.workingColor;
         const cmap = this.props.colormap.map((c) => { return vcsToRGB.apply(this, c)} );
         const style = {
@@ -116,6 +113,19 @@ var ColorField = React.createClass({
             </FormGroup>
         );
     }
-});
+}
+
+ColorField.propTypes = { 
+    color: ColorProp,
+    colormap: PropTypes.array,
+    label: PropTypes.string,
+    controlId: PropTypes.string,
+    colorChanged: PropTypes.func,
+    inline: PropTypes.bool
+}
+
+ColorField.defaultProps = {
+    inline: false
+}
 
 export default ColorField;

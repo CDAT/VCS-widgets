@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import {ControlLabel, FormGroup, Radio} from 'react-bootstrap'
 
-var BoxfillType = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        type: React.PropTypes.string,
-    },
+class BoxfillType extends Component {
+    constructor(props){
+        super(props)
+        this.handleChange = this.handleChange.bind(this)
+    }
+    
     handleChange(event) {
         this.props.updateGraphicsMethod("boxfill_type", event.target.value);
-    },
+    }
+
     render(){
         return (
             <FormGroup controlId="boxfill_type">
@@ -18,6 +21,11 @@ var BoxfillType = React.createClass({
             </FormGroup>
         );
     }
-});
+}
+
+BoxfillType.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    type: PropTypes.string,
+}
 
 export default BoxfillType;
