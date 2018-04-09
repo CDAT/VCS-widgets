@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 
 
-var TemplateLabelSettings = React.createClass({
-    propTypes: {
-        label: React.PropTypes.object,
-        update: React.PropTypes.func
-    },
+class TemplateLabelSettings extends Component {
+    constructor(props){
+        super(props)
+        this.updateLabelValue = this.updateLabelValue.bind(this)
+    }
+
     updateLabelValue(key) {
         const self = this;
         let validator = parseFloat;
@@ -15,7 +17,8 @@ var TemplateLabelSettings = React.createClass({
         return (e) => {
             self.props.update(key, validator(this.range(e.target.value)));
         };
-    },
+    }
+
     range(alt){
         if(alt < 0){
             alt = 0;
@@ -24,7 +27,8 @@ var TemplateLabelSettings = React.createClass({
             alt = 1;
         }
         return alt;
-    },
+    }
+
     render() {
         const x = this.props.label.x;
         const y = this.props.label.y;
@@ -40,7 +44,12 @@ var TemplateLabelSettings = React.createClass({
                 <td style={styles}><input style={{width: 120}} type="number" defaultValue={priority} name="{name}_priority" onBlur={this.updateLabelValue("priority")} /></td>
             </tr>
         );
-    },
-})
+    }
+}
+
+TemplateLabelSettings.propTypes = { 
+    label: PropTypes.object,
+    update: PropTypes.func
+}
 
 export default TemplateLabelSettings;

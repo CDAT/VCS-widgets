@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 
-var TemplateAxisSettings = React.createClass({
-    propTypes: {
-        axis: React.PropTypes.object,
-        update: React.PropTypes.func
-    },
+class TemplateAxisSettings extends Component {
+    constructor(props){
+        super(props)
+        this.updateAxisValue = this.updateAxisValue.bind(this)
+    }
+
     updateAxisValue(key) {
         const self = this;
         let validator = parseFloat;
@@ -14,7 +16,8 @@ var TemplateAxisSettings = React.createClass({
         return (e) => {
             self.props.update(key, validator(this.range(e.target.value)));
         };
-    },
+    }
+
     range(alt){
         if (alt < 0) {
             alt = 0;
@@ -23,7 +26,8 @@ var TemplateAxisSettings = React.createClass({
             alt = 1;
         }
         return alt;
-    },
+    }
+
     render() {
 
         const name = this.props.axis.member;
@@ -98,7 +102,12 @@ var TemplateAxisSettings = React.createClass({
                     )}
             </div>
         );
-    },
-})
+    }
+}
+
+TemplateAxisSettings.propTypes = { 
+    axis: PropTypes.object,
+    update: PropTypes.func
+}
 
 export default TemplateAxisSettings;

@@ -1,15 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import ColorTable from './ColorTable'
 import ColorSwatch from './ColorSwatch'
 import ColorBars from './ColorBars'
 
 
-var ColorPicker = React.createClass({
-    propTypes: {
-        colormap: React.PropTypes.array,
-        color: React.PropTypes.array,
-        updateCurrentColor: React.PropTypes.func,
-    },
+class ColorPicker extends Component {
     render() {
         const mainStyle = {
             display: "flex",
@@ -33,6 +29,12 @@ var ColorPicker = React.createClass({
             </div>
         );
     }
-});
+}
+
+ColorPicker.propTypes = { 
+    colormap: PropTypes.array,
+    color: PropTypes.array,
+    updateCurrentColor: PropTypes.func,
+}
 
 export default ColorPicker;

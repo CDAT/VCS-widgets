@@ -1,28 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import Usage from '../../Usage'
 
-var Legend = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        labels: React.PropTypes.object,
-        levels: React.PropTypes.array,
-        colors: React.PropTypes.array,
-        opacities: React.PropTypes.array,
-        patterns: React.PropTypes.array,
-        fillStyle: React.PropTypes.string,
-        showFill: React.PropTypes.bool,
-        className: React.PropTypes.string
-    },
-    getInitialState() {
-        return {
+class Legend extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
             legend: this.props.legend,
         }
-    },
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState({
             legend: nextProps.legend
         })
-    },
+    }
+
     render() {
         return (
             <div className={this.props.className}>
@@ -36,6 +29,18 @@ var Legend = React.createClass({
             </div>
         );
     }
-});
+}
+
+Legend.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    labels: PropTypes.object,
+    levels: PropTypes.array,
+    colors: PropTypes.array,
+    opacities: PropTypes.array,
+    patterns: PropTypes.array,
+    fillStyle: PropTypes.string,
+    showFill: PropTypes.bool,
+    className: PropTypes.string
+}
 
 export default Legend;

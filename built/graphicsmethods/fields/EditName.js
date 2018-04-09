@@ -4,37 +4,66 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var EditName = _react2.default.createClass({
-    displayName: 'EditName',
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    propTypes: {
-        updateGraphicsMethod: _react2.default.PropTypes.func,
-        name: _react2.default.PropTypes.string
-    },
-    update: function update(e) {
-        this.props.updateGraphicsMethod("name", e.target.value);
-    },
-    render: function render() {
-        return _react2.default.createElement(
-            'span',
-            null,
-            _react2.default.createElement(
-                'h5',
-                null,
-                'Name for new GM'
-            ),
-            _react2.default.createElement('input', { type: 'text',
-                value: this.props.name,
-                onChange: this.update })
-        );
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EditName = function (_Component) {
+    _inherits(EditName, _Component);
+
+    function EditName(props) {
+        _classCallCheck(this, EditName);
+
+        var _this = _possibleConstructorReturn(this, (EditName.__proto__ || Object.getPrototypeOf(EditName)).call(this, props));
+
+        _this.update = _this.update.bind(_this);
+        return _this;
     }
-});
+
+    _createClass(EditName, [{
+        key: 'update',
+        value: function update(e) {
+            this.props.updateGraphicsMethod("name", e.target.value);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'span',
+                null,
+                _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Name for new GM'
+                ),
+                _react2.default.createElement('input', { type: 'text',
+                    value: this.props.name,
+                    onChange: this.update })
+            );
+        }
+    }]);
+
+    return EditName;
+}(_react.Component);
+
+EditName.propTypes = {
+    updateGraphicsMethod: _propTypes2.default.func,
+    name: _propTypes2.default.string
+};
 
 exports.default = EditName;
 //# sourceMappingURL=EditName.js.map

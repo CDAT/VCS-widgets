@@ -1,24 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import NumberField from '../../../common/NumberField'
 
 
-var ColorBars = React.createClass({
-    propTypes: {
-        color: React.PropTypes.array,
-        colorUpdated: React.PropTypes.func,
-    },
+class ColorBars extends Component {
+    constructor(props){
+        super(props)
+        this.updateRed = this.updateRed.bind(this)
+        this.updateBlue = this.updateBlue.bind(this)
+        this.updateGreen = this.updateGreen.bind(this)
+        this.updateAlpha = this.updateAlpha.bind(this)
+    }
+    
     updateRed(v) {
         this.props.colorUpdated([v, this.green.props.value, this.blue.props.value, this.alpha.props.value / 255]);
-    },
+    }
+
     updateBlue(v) {
         this.props.colorUpdated([this.red.props.value, this.green.props.value, v, this.alpha.props.value / 255]);
-    },
+    }
+
     updateGreen(v) {
         this.props.colorUpdated([this.red.props.value, v, this.blue.props.value, this.alpha.props.value / 255]);
-    },
+    }
+
     updateAlpha(v) {
         this.props.colorUpdated([this.red.props.value, this.green.props.value, this.blue.props.value, v / 255]);
-    },
+    }
+
     render() {
         const style = {
             display: "flex",
@@ -34,6 +43,11 @@ var ColorBars = React.createClass({
             </div>
         );
     }
-});
+}
+
+ColorBars.propTypes = { 
+    color: PropTypes.array,
+    colorUpdated: PropTypes.func,
+}
 
 export default ColorBars;

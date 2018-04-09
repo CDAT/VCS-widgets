@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types';
 import Usage from '../../Usage';
 import LegendFill from '../components/LegendFill';
 import LevelField from '../components/LevelField';
@@ -7,22 +8,21 @@ import BooleansField from '../../common/BooleansField';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
 
-var FillareaFields = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        bulkUpdate: React.PropTypes.func,
-        colormap: React.PropTypes.array,
-        level: React.PropTypes.array,
-        color: React.PropTypes.array,
-        opacity: React.PropTypes.array,
-        pattern: React.PropTypes.array,
-        fillStyle: React.PropTypes.string,
-        ext1: React.PropTypes.bool,
-        ext2: React.PropTypes.bool
-    },
-    getInitialState() {
-        return this.normalizedArrays(this.props)
-    },
+class FillareaFields extends Component {
+    constructor(props){
+        super(props)
+        
+        this.normalizedArrays = this.normalizedArrays.bind(this)
+        this.sync = this.sync.bind(this)
+        this.updateFill = this.updateFill.bind(this)
+        this.updateLevel = this.updateLevel.bind(this)
+        this.addLevel = this.addLevel.bind(this)
+        this.removeLevel = this.removeLevel.bind(this)
+        this.setFillStyle = this.setFillStyle.bind(this)
+
+        this.state = this.normalizedArrays(props)
+    }
+
     normalizedArrays(arrays) {
         // Normalizes the length of each array
         let {level, opacity, color, pattern} = arrays;
@@ -87,10 +87,12 @@ var FillareaFields = React.createClass({
             level,
             opacity
         }
-    },
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState(this.normalizedArrays(nextProps));
-    },
+    }
+
     sync(arrays) {
         let {color, pattern, opacity, level} = arrays;
         this.props.bulkUpdate({
@@ -99,7 +101,8 @@ var FillareaFields = React.createClass({
             'fillareaopacity': opacity,
             'levels': level
         });
-    },
+    }
+
     updateFill(index, fillSettings) {
         let {color, pattern, opacity} = this.state;
         color = color.slice();
@@ -120,7 +123,8 @@ var FillareaFields = React.createClass({
         this.sync({
             color, pattern, opacity, 'level': levs
         });
-    },
+    }
+
     updateLevel(index, level) {
         let levs = this.state.level.slice();
         // Update the value
@@ -136,7 +140,8 @@ var FillareaFields = React.createClass({
         }
         levs = levs.slice(start, end);
         this.props.updateGraphicsMethod("levels", levs);
-    },
+    }
+
     addLevel(index) {
         let levs = this.state.level.slice();
         let val = levs[index];
@@ -158,7 +163,8 @@ var FillareaFields = React.createClass({
         const normalized = this.normalizedArrays(base_arrays);
         normalized.level = levs;
         this.sync(normalized);
-    },
+    }
+
     removeLevel(index) {
         let levs = this.state.level.slice();
         // Prevent them from deleting all of the levels
@@ -188,7 +194,8 @@ var FillareaFields = React.createClass({
         const normalized = this.normalizedArrays(base_arrays);
         normalized.level = levs;
         this.sync(normalized);
-    },
+    }
+
     setFillStyle(s) {
         let style = null;
         if (s.hatch) {
@@ -199,7 +206,8 @@ var FillareaFields = React.createClass({
             style = "solid";
         }
         this.props.updateGraphicsMethod('fillareastyle', style);
-    },
+    }
+
     render(){
         const self = this;
         const levels = this.state.level.map((v, i) => {
@@ -242,6 +250,19 @@ var FillareaFields = React.createClass({
             </div>
         );
     }
-});
+}
+
+FillareaFields.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    bulkUpdate: PropTypes.func,
+    colormap: PropTypes.array,
+    level: PropTypes.array,
+    color: PropTypes.array,
+    opacity: PropTypes.array,
+    pattern: PropTypes.array,
+    fillStyle: PropTypes.string,
+    ext1: PropTypes.bool,
+    ext2: PropTypes.bool
+}
 
 export default FillareaFields;

@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 
-var EditName = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        name: React.PropTypes.string
-    },
+class EditName extends Component {
+    constructor(props){
+        super(props)
+        this.update = this.update.bind(this)
+    }
+    
     update(e) {
         this.props.updateGraphicsMethod("name", e.target.value);
-    },
+    }
+
     render(){
         return (
             <span>
@@ -18,7 +21,11 @@ var EditName = React.createClass({
             </span>
         )
     }
+}
 
-});
+EditName.propTypes = {
+    updateGraphicsMethod: PropTypes.func,
+    name: PropTypes.string
+}
 
 export default EditName;

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import {FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap'
 
 
@@ -43,40 +44,21 @@ function shouldExponentiate(v) {
 const numregexp = /-?\d*\.\d*(e\d+)?/
 
 
-var NumberField = React.createClass({
-    propTypes: {
-        value: React.PropTypes.number,
-        minValue: React.PropTypes.number,
-        maxvalue: React.PropTypes.number,
-        updatedValue: React.PropTypes.func,
-        label: React.PropTypes.string,
-        controlId: React.PropTypes.string,
-        step: React.PropTypes.number,
-        autoround: React.PropTypes.bool,
-        placeholder: React.PropTypes.string,
-        exponential: React.PropTypes.bool,
-        inline: React.PropTypes.bool
-    },
-    getDefaultProps() {
-        return {
-            inline: false,
-            minValue: 0,
-            maxValue: 100,
-            step: 1,
-            autoround: false,
-            placeholder: "",
-            exponential: true
-        }
-    },
-    getInitialState() {
-        return {
+class NumberField extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
             validationState: null,
-            value: this.props.value
+            value: props.value
         }
-    },
+        this.update = this.update.bind(this)
+        this.validate = this.validate.bind(this)
+    }
+    
     componentWillReceiveProps(nextProps) {
         this.setState({"value": nextProps.value, "validationState": null});
-    },
+    }
+
     update(e) {
         let new_val = e.target.value;
         if (this.props.exponential) {
@@ -89,7 +71,8 @@ var NumberField = React.createClass({
                 this.props.updatedValue(new_val);
             }
         }
-    },
+    }
+
     validate(e) {
         let new_val = e.target.value;
 
@@ -113,7 +96,8 @@ var NumberField = React.createClass({
             new_state.validationState = "error";
         }
         this.setState(new_state);
-    },
+    }
+
     render() {
         let {minValue, step, maxValue, label, controlId, placeholder} = this.props;
 
@@ -144,6 +128,30 @@ var NumberField = React.createClass({
             </FormGroup>
         );
     }
-});
+}
+
+NumberField.propTypes = { 
+    value: PropTypes.number,
+    minValue: PropTypes.number,
+    maxvalue: PropTypes.number,
+    updatedValue: PropTypes.func,
+    label: PropTypes.string,
+    controlId: PropTypes.string,
+    step: PropTypes.number,
+    autoround: PropTypes.bool,
+    placeholder: PropTypes.string,
+    exponential: PropTypes.bool,
+    inline: PropTypes.bool
+}
+
+NumberField.defaultProps = {
+    inline: false,
+    minValue: 0,
+    maxValue: 100,
+    step: 1,
+    autoround: false,
+    placeholder: "",
+    exponential: true
+}
 
 export default NumberField;

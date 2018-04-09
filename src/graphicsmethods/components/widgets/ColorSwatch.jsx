@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 
 
-var ColorSwatch = React.createClass({
-    propTypes: {
-        color: React.PropTypes.array,
-    },
+class ColorSwatch extends Component {
     render() {
         let color = "rgba(" + this.props.color.join(", ") + ")";
         const style = {
@@ -17,6 +15,10 @@ var ColorSwatch = React.createClass({
             <div style={style}></div>
         );
     }
-});
+}
+
+ColorSwatch.propTypes = { 
+    color: PropTypes.array,
+}
 
 export default ColorSwatch;
