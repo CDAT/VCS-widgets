@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ColormapField from '../fields/ColormapField'
 import BoxfillType from '../fields/BoxfillType'
 import ColorOneTwo from '../fields/ColorOneTwo'
@@ -12,13 +13,7 @@ import Projection from '../fields/Projection'
 import Legend from '../fields/Legend'
 import EditName from '../fields/EditName'
 
-var BoxfillEditor = React.createClass({
-    propTypes: {
-        colormaps: React.PropTypes.object,
-        graphicsMethod: React.PropTypes.object,
-        updateGraphicsMethod: React.PropTypes.func, // Previously this was the updateField function; now it handles a bulk update of the graphics method.
-        updateField: React.PropTypes.func,
-    },
+class BoxfillEditor extends Component {
     render() {
         return (
             <div className="container-fluid">
@@ -106,6 +101,13 @@ var BoxfillEditor = React.createClass({
             </div>
         )
     }
-});
+}
+
+BoxfillEditor.propTypes = {
+    colormaps: PropTypes.object,
+    graphicsMethod: PropTypes.object,
+    updateGraphicsMethod: PropTypes.func, // Previously this was the updateField function; now it handles a bulk update of the graphics method.
+    updateField: PropTypes.func,
+}
 
 export default BoxfillEditor;

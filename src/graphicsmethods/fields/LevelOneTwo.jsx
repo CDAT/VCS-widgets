@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import NumberField from '../../common/NumberField';
 
 
@@ -14,24 +15,19 @@ function verify(value) {
     }
 }
 
-var LevelOneTwo = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        level1: React.PropTypes.number,
-        level2: React.PropTypes.number
-    },
+class LevelOneTwo extends Component {
     render() {
         const self = this;
         /*
-        value: React.PropTypes.number,
-        minValue: React.PropTypes.number,
-        maxvalue: React.PropTypes.number,
-        updatedValue: React.PropTypes.func,
-        label: React.PropTypes.string,
-        controlId: React.PropTypes.string,
-        step: React.PropTypes.number,
-        autoround: React.PropTypes.bool,
-        placeholder: React.PropTypes.string,
+        value: PropTypes.number,
+        minValue: PropTypes.number,
+        maxvalue: PropTypes.number,
+        updatedValue: PropTypes.func,
+        label: PropTypes.string,
+        controlId: PropTypes.string,
+        step: PropTypes.number,
+        autoround: PropTypes.bool,
+        placeholder: PropTypes.string,
         */
         return (
             <div id='level-one-two'>
@@ -40,6 +36,12 @@ var LevelOneTwo = React.createClass({
             </div>
         );
     }
-});
+}
+
+LevelOneTwo.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    level1: PropTypes.number,
+    level2: PropTypes.number
+}
 
 export default LevelOneTwo;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types';
 import Usage from '../../Usage';
 import NumberField from '../../common/NumberField';
 /* global $ */
@@ -17,17 +18,16 @@ function validate(value, maximum) {
         }
     }
 }
-var DatawcCoordinates = React.createClass({
-    propTypes: {
-        updateGraphicsMethod: React.PropTypes.func,
-        x1: React.PropTypes.number,
-        x2: React.PropTypes.number,
-        y1: React.PropTypes.number,
-        y2: React.PropTypes.number,
-    },
+class DatawcCoordinates extends Component {
+    constructor(props){
+        super(props)
+        this.handleBlur = this.handleBlur.bind(this)
+    }
+    
     handleBlur(e) {
         this.props.updateGraphicsMethod(e.target.name, parseFloat(e.target.value));
-    },
+    }
+
     render(){
         const self = this;
         return (
@@ -51,6 +51,14 @@ var DatawcCoordinates = React.createClass({
             </div>
         );
     }
-});
+}
+
+DatawcCoordinates.propTypes = { 
+    updateGraphicsMethod: PropTypes.func,
+    x1: PropTypes.number,
+    x2: PropTypes.number,
+    y1: PropTypes.number,
+    y2: PropTypes.number,
+}
 
 export default DatawcCoordinates;

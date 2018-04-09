@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types';
 import ColorProp from '../../validators/ColorProp';
 import ColorField from './ColorField';
 import NumberField from '../../common/NumberField';
@@ -11,16 +12,9 @@ const patterns = ["No Pattern", "Triangle", "Filled Triangle", "Dot", "Filled Do
                   "Square", "Filled Square", "Arrow", "Circle Cross", "Edge Arrow"];
 
 
-export default React.createClass({
-    propTypes: {
-        colormap: React.PropTypes.array,
-        color: ColorProp,
-        opacity: React.PropTypes.number,
-        pattern: React.PropTypes.number,
-        title: React.PropTypes.string,
-        updateFill: React.PropTypes.func
-    },
-    getInitialState() {
+ class LegendFill extends Component {
+    constructor(props){
+        super(props)
         // Calculate an initial value for opacity if none is given to use as placeholder
         let opacity = this.props.opacity;
         const color = this.props.color;
@@ -36,32 +30,39 @@ export default React.createClass({
                 opacity = 100;
             }
         }
-
-        return {
+        this.state = {
             opacity
-        };
-    },
+        }
+
+        this.colorChanged = this.colorChanged.bind(this)
+        this.opacityChanged = this.opacityChanged.bind(this)
+        this.patternChanged = this.patternChanged.bind(this)
+    }
+    
     colorChanged(c) {
         this.props.updateFill({
             color: c,
             opacity: this.props.opacity,
             pattern: this.props.pattern
         });
-    },
+    }
+
     opacityChanged(n) {
         this.props.updateFill({
             color: this.props.color,
             opacity: n,
             pattern: this.props.pattern
         });
-    },
+    }
+
     patternChanged(e) {
         this.props.updateFill({
             color: this.props.color,
             opacity: this.props.opacity,
             pattern: parseInt(e.target.value)
         });
-    },
+    }
+
     render() {
         return (
             <div className="row">
@@ -85,4 +86,15 @@ export default React.createClass({
             </div>
         );
     }
-});
+}
+
+LegendFill.propTypes = { 
+    colormap: PropTypes.array,
+    color: ColorProp,
+    opacity: PropTypes.number,
+    pattern: PropTypes.number,
+    title: PropTypes.string,
+    updateFill: PropTypes.func
+}
+
+export default LegendFill

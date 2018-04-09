@@ -1,13 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import {Button} from 'react-bootstrap'
 
 
-var ColorButton = React.createClass({
-    propTypes: {
-        color: React.PropTypes.array,
-        action: React.PropTypes.func,
-        inline: React.PropTypes.bool
-    },
+class ColorButton extends Component {
     render() {
         let color = "rgba(" + this.props.color.join(", ") + ")";
         const style = {
@@ -19,6 +15,12 @@ var ColorButton = React.createClass({
             </div>
         );
     }
-});
+}
+
+ColorButton.propTypes = { 
+    color: PropTypes.array,
+    action: PropTypes.func,
+    inline: PropTypes.bool
+}
 
 export default ColorButton;

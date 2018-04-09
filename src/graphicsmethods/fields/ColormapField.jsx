@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react' 
+import PropTypes from 'prop-types'
 import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
 
-var ColormapField = React.createClass({
-    propTypes: {
-        colormap: React.PropTypes.string,
-        updateGraphicsMethod: React.PropTypes.func,
-        colormaps: React.PropTypes.object
-    },
+class ColormapField extends Component {
+    constructor(props){
+        super(props)
+        this.handleChange = this.handleChange.bind(this)
+    }
+    
     handleChange(e) {
         const cmap = e.target.value;
         this.props.updateGraphicsMethod("colormap", cmap);
-    },
+    }
+
     render() {
         let cmap = this.props.colormap;
         if (cmap === null) {
@@ -27,6 +29,12 @@ var ColormapField = React.createClass({
             </FormGroup>
         );
     }
-});
+}
+
+ColormapField.propTypes = { 
+    colormap: PropTypes.string,
+    updateGraphicsMethod: PropTypes.func,
+    colormaps: PropTypes.object
+}
 
 export default ColormapField;
