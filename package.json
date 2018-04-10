@@ -1,6 +1,6 @@
 {
   "name": "vcs-widgets",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Widgets for manipulating VCS JSON",
   "main": "built/index.js",
   "scripts": {
@@ -35,7 +35,11 @@
     "webpack": "^1.12.11"
   },
   "dependencies": {
+    "jquery": "^3.3.1",
     "npm": "^5.8.0",
+    "react": "^16.3.1",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.3.1",
     "user": "0.0.0"
   }
 }
