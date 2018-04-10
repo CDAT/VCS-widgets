@@ -1,6 +1,6 @@
 {
   "name": "vcs-widgets",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Widgets for manipulating VCS JSON",
   "main": "built/index.js",
   "scripts": {
