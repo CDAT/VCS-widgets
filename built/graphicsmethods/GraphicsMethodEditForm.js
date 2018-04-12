@@ -42,6 +42,7 @@ var GraphicsMethodEditForm = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (GraphicsMethodEditForm.__proto__ || Object.getPrototypeOf(GraphicsMethodEditForm)).call(this, props));
 
+        console.log("test1");
         _this.updateGraphicsMethodField = _this.updateGraphicsMethodField.bind(_this);
         _this.updateGraphicsMethod = _this.updateGraphicsMethod.bind(_this);
         return _this;
@@ -78,6 +79,8 @@ var GraphicsMethodEditForm = function (_Component) {
                     return _react2.default.createElement(_BoxfillEditor2.default, props);
                 case 'Gfi':
                     return _react2.default.createElement(_IsofillEditor2.default, props);
+                default:
+                    return null;
             }
         }
     }]);

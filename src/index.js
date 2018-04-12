@@ -3,6 +3,8 @@ import BooleansField from "./common/BooleansField";
 import NumberField from "./common/NumberField";
 import TemplateEditForm from './templates';
 
+const SUPPORTED_GM_EDITORS = ["Gfb", "Gfi"] // check GraphicsMethodEditForm.jsx for values.
+
 const widgets = {
     GMEdit: GraphicsMethodEditForm,
     TemplateEdit: TemplateEditForm,
@@ -10,4 +12,5 @@ const widgets = {
     NumberField
 };
 
+export { SUPPORTED_GM_EDITORS }
 export default widgets;
