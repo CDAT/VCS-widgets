@@ -18,10 +18,6 @@ var _ColormapField = require('../fields/ColormapField');
 
 var _ColormapField2 = _interopRequireDefault(_ColormapField);
 
-var _BoxfillType = require('../fields/BoxfillType');
-
-var _BoxfillType2 = _interopRequireDefault(_BoxfillType);
-
 var _DatawcCoordinates = require('../fields/DatawcCoordinates');
 
 var _DatawcCoordinates2 = _interopRequireDefault(_DatawcCoordinates);
@@ -29,10 +25,6 @@ var _DatawcCoordinates2 = _interopRequireDefault(_DatawcCoordinates);
 var _Exts = require('../fields/Exts');
 
 var _Exts2 = _interopRequireDefault(_Exts);
-
-var _TicsAndLabels = require('../fields/TicsAndLabels');
-
-var _TicsAndLabels2 = _interopRequireDefault(_TicsAndLabels);
 
 var _FillareaFields = require('../fields/FillareaFields');
 

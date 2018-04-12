@@ -8,6 +8,7 @@ import IsofillEditor from './editors/IsofillEditor';
 class GraphicsMethodEditForm extends Component {
     constructor(props){
         super(props)
+        console.log("test1")
         this.updateGraphicsMethodField = this.updateGraphicsMethodField.bind(this)
         this.updateGraphicsMethod = this.updateGraphicsMethod.bind(this)
     }
@@ -35,10 +36,12 @@ class GraphicsMethodEditForm extends Component {
         let editor = null;
         // We'll switch based on GM type here
         switch(this.props.graphicsMethod.g_name) {
-          case 'Gfb':
-            return (<BoxfillEditor {...props} />);
-          case 'Gfi':
-            return <IsofillEditor {...props} />;
+            case 'Gfb':
+                return <BoxfillEditor {...props} />
+            case 'Gfi':
+                return <IsofillEditor {...props} />
+             default:
+                 return null
         }
     }
 }
