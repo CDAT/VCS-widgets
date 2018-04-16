@@ -8,7 +8,6 @@ import IsofillEditor from './editors/IsofillEditor';
 class GraphicsMethodEditForm extends Component {
     constructor(props){
         super(props)
-        console.log("test1")
         this.updateGraphicsMethodField = this.updateGraphicsMethodField.bind(this)
         this.updateGraphicsMethod = this.updateGraphicsMethod.bind(this)
     }
