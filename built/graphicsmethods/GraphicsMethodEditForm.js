@@ -42,7 +42,6 @@ var GraphicsMethodEditForm = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (GraphicsMethodEditForm.__proto__ || Object.getPrototypeOf(GraphicsMethodEditForm)).call(this, props));
 
-        console.log("test1");
         _this.updateGraphicsMethodField = _this.updateGraphicsMethodField.bind(_this);
         _this.updateGraphicsMethod = _this.updateGraphicsMethod.bind(_this);
         return _this;
