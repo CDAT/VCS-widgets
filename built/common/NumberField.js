@@ -62,8 +62,6 @@ function shouldExponentiate(v) {
     return false;
 }
 
-var numregexp = /-?\d*\.\d*(e\d+)?/;
-
 var NumberField = function (_Component) {
     _inherits(NumberField, _Component);
 
@@ -111,7 +109,7 @@ var NumberField = function (_Component) {
                 "validationState": "success"
             };
 
-            if (!numregexp.test(new_val)) {
+            if (isNaN(Number(new_val))) {
                 // Invalid number
                 new_state.validationState = "error";
             }
@@ -132,7 +130,6 @@ var NumberField = function (_Component) {
         value: function render() {
             var _props = this.props,
                 minValue = _props.minValue,
-                step = _props.step,
                 maxValue = _props.maxValue,
                 label = _props.label,
                 controlId = _props.controlId,
@@ -143,20 +140,42 @@ var NumberField = function (_Component) {
 
             var help = '';
             if (this.state.validationState === "warning" || this.state.validationState === "error") {
-                help = _react2.default.createElement(
-                    _reactBootstrap.HelpBlock,
-                    null,
-                    'Value must be between a valid number ',
-                    minValue === null ? "greater than " + minValue : "",
-                    ' ',
-                    minValue !== null && maxValue !== null ? " and " : "",
-                    ' ',
-                    maxValue !== null ? " less than " + maxValue : ""
-                );
+                if (minValue !== null && maxValue == !null) {
+                    help = _react2.default.createElement(
+                        _reactBootstrap.HelpBlock,
+                        null,
+                        'Value must be a valid number, ',
+                        "greater than " + minValue,
+                        ' and ',
+                        "less than " + maxValue
+                    );
+                } else if (minValue !== null) {
+                    help = _react2.default.createElement(
+                        _reactBootstrap.HelpBlock,
+                        null,
+                        'Value must be a valid number, ',
+                        "greater than " + minValue
+                    );
+                } else if (maxValue !== null) {
+                    help = _react2.default.createElement(
+                        _reactBootstrap.HelpBlock,
+                        null,
+                        'Value must be a valid number, ',
+                        maxValue !== null ? "less than " + maxValue : ""
+                    );
+                } else {
+                    help = _react2.default.createElement(
+                        _reactBootstrap.HelpBlock,
+                        null,
+                        'Value must be a valid number'
+                    );
+                }
             }
+
             if (value === null) {
                 value = "";
             }
+
             var numval = parseNum(value);
             if (this.props.exponential && shouldExponentiate(numval)) {
                 var unsigned = Math.abs(numval);
@@ -164,9 +183,11 @@ var NumberField = function (_Component) {
                 var rest = numval / Math.pow(10, exp);
                 value = rest + "e" + exp;
             }
+
             var style = {
                 display: this.props.inline ? "inline-block" : "block"
             };
+
             return _react2.default.createElement(
                 _reactBootstrap.FormGroup,
                 { style: style, controlId: controlId },
@@ -187,7 +208,7 @@ var NumberField = function (_Component) {
 NumberField.propTypes = {
     value: _propTypes2.default.number,
     minValue: _propTypes2.default.number,
-    maxvalue: _propTypes2.default.number,
+    maxValue: _propTypes2.default.number,
     updatedValue: _propTypes2.default.func,
     label: _propTypes2.default.string,
     controlId: _propTypes2.default.string,

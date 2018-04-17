@@ -38,7 +38,8 @@ var Projection = function (_Component) {
     _createClass(Projection, [{
         key: 'render',
         value: function render() {
-            var self = this;
+            var _this2 = this;
+
             return _react2.default.createElement(
                 _reactBootstrap.FormGroup,
                 { controlId: 'projection' },
@@ -50,7 +51,7 @@ var Projection = function (_Component) {
                 _react2.default.createElement(
                     _reactBootstrap.FormControl,
                     { value: this.props.projection, componentClass: 'select', onChange: function onChange(e) {
-                            self.props.updateGraphicsMethod("projection", e.target.value);
+                            _this2.props.updateGraphicsMethod("projection", e.target.value);
                         } },
                     _react2.default.createElement(
                         'option',

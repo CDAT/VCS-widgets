@@ -6,11 +6,10 @@ import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
 
 class Projection extends Component {
     render() {
-        const self = this;
         return (
             <FormGroup controlId="projection">
                 <ControlLabel>Projection</ControlLabel>
-                <FormControl value={this.props.projection} componentClass="select" onChange={(e) => {self.props.updateGraphicsMethod("projection", e.target.value);} }>
+                <FormControl value={this.props.projection} componentClass="select" onChange={(e) => {this.props.updateGraphicsMethod("projection", e.target.value);} }>
                     <option value='default'>Default</option>
                     <option value='lambert'>Lambert</option>
                     <option value='linear'>Linear</option>
