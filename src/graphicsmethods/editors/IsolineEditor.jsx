@@ -8,8 +8,6 @@ import LabelOptions from '../fields/LabelOptions'
 
 class IsolineEditor extends Component {
     render() {
-        console.log(this.props)
-        console.log(this.props.graphicsMethod.label)
         return (
             <div className="container-fluid">
                 <div className='row'>
@@ -30,12 +28,6 @@ class IsolineEditor extends Component {
                 </div>
                 <div className='row'>
                     <div className='col-md-12'>
-                        <Projection projection={this.props.graphicsMethod['projection']}
-                            updateGraphicsMethod={this.props.updateField} />
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col-md-12'>
                         <LabelOptions
                             updateGraphicsMethod={this.props.updateField}
                             label={this.props.graphicsMethod.label}
@@ -43,9 +35,15 @@ class IsolineEditor extends Component {
                         />
                     </div>
                 </div>
+                <div className='row'>
+                    <div className='col-md-12'>
+                        <Projection projection={this.props.graphicsMethod['projection']}
+                            updateGraphicsMethod={this.props.updateField} />
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <DatawcCoordinates 
+                        <DatawcCoordinates
                             updateGraphicsMethod={this.props.updateField}
                             x1={this.props.graphicsMethod['datawc_x1']}
                             x2={this.props.graphicsMethod['datawc_x2']}

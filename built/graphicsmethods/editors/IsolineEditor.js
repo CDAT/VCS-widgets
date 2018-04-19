@@ -54,8 +54,6 @@ var IsolineEditor = function (_Component) {
     _createClass(IsolineEditor, [{
         key: 'render',
         value: function render() {
-            console.log(this.props);
-            console.log(this.props.graphicsMethod.label);
             return _react2.default.createElement(
                 'div',
                 { className: 'container-fluid' },
@@ -93,8 +91,11 @@ var IsolineEditor = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-md-12' },
-                        _react2.default.createElement(_Projection2.default, { projection: this.props.graphicsMethod['projection'],
-                            updateGraphicsMethod: this.props.updateField })
+                        _react2.default.createElement(_LabelOptions2.default, {
+                            updateGraphicsMethod: this.props.updateField,
+                            label: this.props.graphicsMethod.label,
+                            label_skip_distance: this.props.graphicsMethod.labelskipdistance
+                        })
                     )
                 ),
                 _react2.default.createElement(
@@ -103,11 +104,8 @@ var IsolineEditor = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-md-12' },
-                        _react2.default.createElement(_LabelOptions2.default, {
-                            updateGraphicsMethod: this.props.updateField,
-                            label: this.props.graphicsMethod.label,
-                            label_skip_distance: this.props.graphicsMethod.labelskipdistance
-                        })
+                        _react2.default.createElement(_Projection2.default, { projection: this.props.graphicsMethod['projection'],
+                            updateGraphicsMethod: this.props.updateField })
                     )
                 ),
                 _react2.default.createElement(
