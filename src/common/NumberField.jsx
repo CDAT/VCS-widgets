@@ -1,6 +1,6 @@
 import React, { Component } from 'react' 
 import PropTypes from 'prop-types'
-import {FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap'
+import { FormControl, FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 
 function parseNum(v) {
@@ -19,30 +19,27 @@ function parseNum(v) {
 
 function shouldExponentiate(v) {
     if (isNaN(v) || !isFinite(v)) {
-        return false;
+        return false
     }
-    let absval = Math.abs(v);
+    let absval = Math.abs(v)
     if (absval >= 1e10) {
-        return true;
+        return true
     }
     if (v === 0) {
         // will break logarithms; also, not needed.
-        return false;
+        return false
     }
 
     let frac = absval - Math.floor(absval)
     if (frac === 0) {
-        return false;
+        return false
     }
     if (Math.log10(frac) < -10) {
-        return true;
+        return true
     }
 
-    return false;
+    return false
 }
-
-const numregexp = /-?\d*\.\d*(e\d+)?/
-
 
 class NumberField extends Component {
     constructor(props){
@@ -56,84 +53,100 @@ class NumberField extends Component {
     }
     
     componentWillReceiveProps(nextProps) {
-        this.setState({"value": nextProps.value, "validationState": null});
+        this.setState({"value": nextProps.value, "validationState": null})
     }
 
     update(e) {
-        let new_val = e.target.value;
+        let new_val = e.target.value
         if (this.props.exponential) {
-            new_val = parseNum(new_val);
+            new_val = parseNum(new_val)
         }
         if (new_val !== this.props.value) {
             if (this.props.autoround) {
-                this.props.updatedValue(Math.floor(new_val / this.props.step) * this.props.step);
+                this.props.updatedValue(Math.floor(new_val / this.props.step) * this.props.step)
             } else {
-                this.props.updatedValue(new_val);
+                this.props.updatedValue(new_val)
             }
         }
     }
 
     validate(e) {
-        let new_val = e.target.value;
+        let new_val = e.target.value
 
         const new_state = {
             "value": e.target.value, //Use the provided value, just make sure it's valid.
             "validationState": "success"
-        };
+        }
 
-        if (!numregexp.test(new_val)) {
+        if (isNaN(Number(new_val))) {
             // Invalid number
-            new_state.validationState  = "error";
+            new_state.validationState  = "error"
         }
 
         // Check value limits
-        new_val = parseNum(new_val);
+        new_val = parseNum(new_val)
 
         if (this.props.minValue !== null && new_val < this.props.minValue) {
-            new_state.validationState = "error";
+            new_state.validationState = "error"
         }
         if (this.props.maxValue !== null && new_val > this.props.maxValue) {
-            new_state.validationState = "error";
+            new_state.validationState = "error"
         }
-        this.setState(new_state);
+        this.setState(new_state)
     }
 
     render() {
-        let {minValue, step, maxValue, label, controlId, placeholder} = this.props;
+        let {minValue, maxValue, label, controlId, placeholder} = this.props;
 
-        let value = this.state.value;
+        let value = this.state.value
 
-        let help = '';
+        let help = ''
         if (this.state.validationState === "warning" || this.state.validationState === "error") {
-            help = <HelpBlock>Value must be between a valid number {minValue === null ? "greater than " + minValue : ""} {minValue !== null && maxValue !== null ? " and " : ""} {maxValue !== null ? " less than " + maxValue : ""}</HelpBlock>
+            if(minValue !== null && maxValue ==! null){
+                help = <HelpBlock>Value must be a valid number, {"greater than " + minValue} and {"less than " + maxValue}</HelpBlock>
+            }
+            else if(minValue !== null){
+                help = <HelpBlock>Value must be a valid number, {"greater than " + minValue}</HelpBlock>
+            }
+            else if(maxValue !== null){
+                help = <HelpBlock>Value must be a valid number, {maxValue !== null ? "less than " + maxValue : ""}</HelpBlock>
+            }
+            else{
+                help = <HelpBlock>Value must be a valid number</HelpBlock>
+            }
+
         }
+
         if (value === null) {
-            value = "";
+            value = ""
         }
-        const numval = parseNum(value);
+
+        const numval = parseNum(value)
         if (this.props.exponential && shouldExponentiate(numval)) {
-            let unsigned = Math.abs(numval);
-            let exp = Math.floor(Math.log10(unsigned));
-            let rest = numval / Math.pow(10, exp);
-            value = rest + "e" + exp;
+            let unsigned = Math.abs(numval)
+            let exp = Math.floor(Math.log10(unsigned))
+            let rest = numval / Math.pow(10, exp)
+            value = rest + "e" + exp
         }
+
         const style = {
             display: this.props.inline ? "inline-block" : "block"
         }
+
         return (
             <FormGroup style={style} controlId={controlId}>
                 {label ? <ControlLabel>{label}</ControlLabel> : ''}
                 <FormControl placeholder={placeholder} onChange={this.validate} onBlur={this.update} value={value} />
                 {help}
             </FormGroup>
-        );
+        )
     }
 }
 
-NumberField.propTypes = { 
+NumberField.propTypes = {
     value: PropTypes.number,
     minValue: PropTypes.number,
-    maxvalue: PropTypes.number,
+    maxValue: PropTypes.number,
     updatedValue: PropTypes.func,
     label: PropTypes.string,
     controlId: PropTypes.string,
@@ -154,4 +167,4 @@ NumberField.defaultProps = {
     exponential: true
 }
 
-export default NumberField;
+export default NumberField

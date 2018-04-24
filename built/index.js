@@ -23,7 +23,7 @@ var _templates2 = _interopRequireDefault(_templates);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SUPPORTED_GM_EDITORS = ["Gfb", "Gfi"]; // check GraphicsMethodEditForm.jsx for values.
+var SUPPORTED_GM_EDITORS = ["Gfb", "Gfi", "Gi"]; // check GraphicsMethodEditForm.jsx for values.
 
 var widgets = {
     GMEdit: _graphicsmethods2.default,

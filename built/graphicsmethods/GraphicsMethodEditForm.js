@@ -26,6 +26,10 @@ var _IsofillEditor = require('./editors/IsofillEditor');
 
 var _IsofillEditor2 = _interopRequireDefault(_IsofillEditor);
 
+var _IsolineEditor = require('./editors/IsolineEditor');
+
+var _IsolineEditor2 = _interopRequireDefault(_IsolineEditor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -71,13 +75,15 @@ var GraphicsMethodEditForm = function (_Component) {
                 updateGraphicsMethod: this.updateGraphicsMethod,
                 updateField: this.updateGraphicsMethodField
             };
-            var editor = null;
             // We'll switch based on GM type here
+            // Be sure to update the SUPPORTED_GM_EDITORS constant when adding or removing cases here.
             switch (this.props.graphicsMethod.g_name) {
                 case 'Gfb':
                     return _react2.default.createElement(_BoxfillEditor2.default, props);
                 case 'Gfi':
                     return _react2.default.createElement(_IsofillEditor2.default, props);
+                case 'Gi':
+                    return _react2.default.createElement(_IsolineEditor2.default, props);
                 default:
                     return null;
             }

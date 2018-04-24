@@ -1,8 +1,9 @@
 import React, { Component } from 'react' 
-import PropTypes from 'prop-types';
-import $ from 'jquery';
-import BoxfillEditor from './editors/BoxfillEditor';
-import IsofillEditor from './editors/IsofillEditor';
+import PropTypes from 'prop-types'
+import $ from 'jquery'
+import BoxfillEditor from './editors/BoxfillEditor'
+import IsofillEditor from './editors/IsofillEditor'
+import IsolineEditor from './editors/IsolineEditor'
 
 
 class GraphicsMethodEditForm extends Component {
@@ -31,16 +32,18 @@ class GraphicsMethodEditForm extends Component {
           graphicsMethod: this.props.graphicsMethod,
           updateGraphicsMethod: this.updateGraphicsMethod,
           updateField: this.updateGraphicsMethodField
-        };
-        let editor = null;
+        }
         // We'll switch based on GM type here
+        // Be sure to update the SUPPORTED_GM_EDITORS constant when adding or removing cases here.
         switch(this.props.graphicsMethod.g_name) {
             case 'Gfb':
                 return <BoxfillEditor {...props} />
             case 'Gfi':
                 return <IsofillEditor {...props} />
-             default:
-                 return null
+            case 'Gi':
+                return <IsolineEditor {...props} />
+            default:
+                return null
         }
     }
 }
